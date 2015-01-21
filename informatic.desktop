@@ -1,0 +1,8 @@
+[Desktop Entry]
+
+GenericName=Inform 6 IDE
+Terminal=false
+Exec=informatic
+Name=Informatic
+Categories=Development;IDE
+Type=Application
