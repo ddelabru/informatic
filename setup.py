@@ -2,8 +2,18 @@
 # coding: utf-8
 # Copyright (c) 2015 Dominic Delabruere
 
+"""
+The setup script for informatic. Run this with the "install" command to install
+Informatic on your system.
+"""
+
+# The version number is imported from the informatic package's __init__.py file.
 from informatic import version
+
 import os.path
+
+# First try to use an existing setuptools installation. If that fails, attempt
+# to download setuptools using the ez_setup script.
 try:
     from setuptools import setup, find_packages
 except:
@@ -11,6 +21,8 @@ except:
     use_setuptools()
     from setuptools import setup, find_packages
 
+# setup() options are stored in a dictionary which can be altered before setup()
+# is actually invoked.
 setup_options = dict(
     name = 'informatic',
     version = version,
@@ -34,6 +46,9 @@ setup_options = dict(
     'Programming Language :: Python :: 3 :: Only',
     'Topic :: Text Editors :: Integrated Development Environments (IDE)']
     )
+
+# If the /usr/share/applications directory exists, the Informatic shortcut is
+# copied into it upon installation.
 if os.path.isdir('/usr/share/applications'):
     setup_options['data_files'] = [
         ('/usr/share/applications/',
@@ -41,6 +56,8 @@ if os.path.isdir('/usr/share/applications'):
             )
         ]
 
+# Test whether PyQt5 and PyQt5.Qsci are installed. They can't be mentioned as
+# requirements in the setup() parameters because setuptools can't install them.
 qsciImported = False
 try:
     import PyQt5.QtWidgets
@@ -59,6 +76,7 @@ except:
     print('Python failed to import the Qscintilla plugin for PyQt5 '
     '(PyQt5.Qsci).\nMake sure it is installed.')
 
+# The script will not run setup() unless PyQt5 and PyQt5.Qsci are present
 if widgetsImported and qsciImported:
     setup(**setup_options)
 else:

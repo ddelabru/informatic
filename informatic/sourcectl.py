@@ -2,28 +2,26 @@
 # coding: utf-8
 # Copyright (c) 2015 Dominic Delabruere
 
-'''
-informatic.sourcectl
-
-The informatic.sourcectl module contains the SourceCtl widget for editing
-source files and associated code.
-'''
+"""
+The sourcectl module contains the SourceCtl widget for editing Inform 6 source
+files and associated code.
+"""
 
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
 import os.path
 
 statements = ['box', 'break', 'continue', 'do', 'font', 'for',
-              'give', 'if', 'inversion', 'jump', 'move', 'new_line', 
+              'give', 'if', 'inversion', 'jump', 'move', 'new_line',
               'objectloop', 'print', 'print_ret', 'quit', 'read',
-              'remove', 'restore', 'return', 'rfalse', 'rtrue', 'save', 
+              'remove', 'restore', 'return', 'rfalse', 'rtrue', 'save',
               'spaces', 'string', 'style', 'switch', 'while']
 word_operators = ['has', 'hasnt', 'in', 'notin', 'ofclass', 'or']
 
 class InformLexer (QsciLexerCustom):
-    '''
-    The InformLexer class provides a Qscintilla lexer for the Inform 6 language.
-    '''
+    """
+    Provides a Qscintilla lexer for the Inform 6 language.
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._styles = {
@@ -77,8 +75,10 @@ class InformLexer (QsciLexerCustom):
         lineIndex = editor.SendScintilla(editor.SCI_LINEFROMPOSITION, start)
         currentStyle = self.Default
         if lineIndex > 0:
-            lastLineEnd = editor.SendScintilla(editor.SCI_GETLINEENDPOSITION, lineIndex - 1)
-            currentStyle = editor.SendScintilla(editor.SCI_GETSTYLEAT, lastLineEnd)
+            lastLineEnd = editor.SendScintilla(
+            editor.SCI_GETLINEENDPOSITION, lineIndex - 1)
+            currentStyle = editor.SendScintilla(
+            editor.SCI_GETSTYLEAT, lastLineEnd)
         if currentStyle not in [self.String, self.DictWord]:
             currentStyle = self.Default
         self.startStyling(start, 0x1f)
