@@ -23,6 +23,8 @@ class InformLexer (QsciLexerCustom):
     """
     Provides a Qscintilla lexer for the Inform 6 language.
     """
+    # The lexer  class was written using Baz Walter's QSciLexerCustom example
+    # code as inspiration.
     def __init__(self, *args, **kwargs):
         """
         Passes all arguments directly to the QsciLexerCustom
@@ -85,6 +87,14 @@ class InformLexer (QsciLexerCustom):
             font.setBold(True)
         return font
     def styleText(self, start, end):
+        """
+        Takes two arguments, start and end, representing starting and
+        ending positions within a QScintilla source code edit widget,
+        and styles the text between these positions.
+        """
+        
+        # I still have only a tenuous grasp on how this reimplemented function
+        # is supposed to work.
         editor = self.editor()
         if editor is None:
             return
@@ -139,21 +149,43 @@ class InformLexer (QsciLexerCustom):
             lineIndex += 1
 
 class SourceCtl (QsciScintilla):
+    """
+    A widget for editing Inform 6 source code.
+    """
     def __init__(self, mainWindow=None, parent=None, filepath=None):
+        """
+        Takes three optional keyword arguments: mainWindow, the main
+        window widget that owns the constructed widget, parent, which is
+        passed QsciScintilla constructor, and filepath, which should be
+        an absolute filepath to the source file to be edited.
+        """
         super().__init__(parent)
-        self.setMarginLineNumbers(1, True)
-        lexer = InformLexer(self)
-        lexer.setEditor(self)
-        self.setLexer(lexer)
+        
+        # If a filepath was supplied to the constructor, read the text from
+        # the file into the widget.
         self.filepath = filepath
         if filepath and os.path.isfile(filepath):
             with open(self.filepath, 'r') as sourceFile:
                 self.setText(sourceFile.read())
         
+        # Set some formatting options for the widget
+        self.setMarginType(1, QsciScintilla.NumberMargin)
+        self.setMarginLineNumbers(1, True)
+        lexer = InformLexer(self)
+        lexer.setEditor(self)
+        self.setLexer(lexer)
+        
         self.mainWindow = mainWindow
+        
+        # The widget will keep track of whether its content has been saved.
         self.saved = True
         self.textChanged.connect(self.showUnsaved)
     def showUnsaved(self):
+        """
+        Called whenever the contents of the contents of the widget are
+        changed. Ensures that the tab widget holding the widget
+        indicates that the widget's contents have not been saved.
+        """
         if self.saved:
             tabWidget = self.mainWindow.tabWidget
             tabIndex = tabWidget.indexOf(self)
