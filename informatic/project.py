@@ -259,43 +259,19 @@ class MainSourceFilePage(QWizardPage):
         else:
             return True
 
-class ProjectFilePage(QWizardPage):
-    """
-    Page for the new project wizard that prompts the user for a name for
-    the project file.
-    """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.setTitle('Project file')
-        layout = QHBoxLayout()
-        layout.addWidget(QLabel('Project file path:'))
-        self.lineEdit = QLineEdit()
-        self.registerField('projectFilePath*', self.lineEdit)
-        self.lineEdit.textChanged.connect(self.completeChanged)
-        layout.addWidget(self.lineEdit)
-        chooser = QPushButton('Choose...')
-        chooser.clicked.connect(self.chooseProjectFile)
-        layout.addWidget(chooser)
-        self.setLayout(layout)
-    def chooseProjectFile(self):
-        if self.field('oldFile'):
-            mainSourcePath = self.field('oldFilePath')
-        if self.field('newFile'):
-            mainSourcePath = self.field('newFilePath')
-        defaultPath = os.path.splitext(
-        os.path.basename(mainSourcePath))[0] + '.informatic'
-        defaultPath = os.path.join(self.field('sourceDir'), defaultPath)
-        self.lineEdit.setText(
-        QFileDialog.getSaveFileName(directory=defaultPath)[0])
-    def isComplete(self):
-        if self.lineEdit.text():
-            return True
-        else:
-            return False
-
 class CompilerPage(QWizardPage):
+    """
+    Page for the new project wizard that allows the user to set the
+    project's compiler options.
+    """
     def __init__(self, *args, **kwargs):
+        """
+        Passes all arguments directly to the QWizardPage constructor.
+        """
         super().__init__(*args, **kwargs)
+        
+        # The rest of this function sets up the wizard page's layout,
+        # connecting widgets to functions and wizard fields as necessary.
         self.setTitle('Inform 6 compiler')
         layout = QHBoxLayout()
         layout.addWidget(QLabel('Compiler path:'))
@@ -309,26 +285,106 @@ class CompilerPage(QWizardPage):
         layout.addWidget(chooser)
         self.setLayout(layout)
     def chooseCompilerPath(self):
+        """
+        Sets the contents of the page's compiler path line-edit widget
+        using the output of a file dialog.
+        """
         self.lineEdit.setText(QFileDialog.getOpenFileName()[0])
     def isComplete(self):
+        """
+        Checks whether the wizard page is complete. Allows the user to
+        continue if the page's line-edit widget contains text.
+        """
+        if self.lineEdit.text():
+            return True
+        else:
+            return False
+
+class ProjectFilePage(QWizardPage):
+    """
+    Page for the new project wizard that prompts the user for a name for
+    the project file.
+    """
+    def __init__(self, *args, **kwargs):
+        """
+        Passes all arguments directly to the QWizardPage constructor.
+        """
+        super().__init__(*args, **kwargs)
+        
+        # The rest of this function sets up the wizard page's layout,
+        # connecting widgets to functions and wizard fields as necessary.
+        self.setTitle('Project file')
+        layout = QHBoxLayout()
+        layout.addWidget(QLabel('Project file path:'))
+        self.lineEdit = QLineEdit()
+        self.registerField('projectFilePath*', self.lineEdit)
+        self.lineEdit.textChanged.connect(self.completeChanged)
+        layout.addWidget(self.lineEdit)
+        chooser = QPushButton('Choose...')
+        chooser.clicked.connect(self.chooseProjectFile)
+        layout.addWidget(chooser)
+        self.setLayout(layout)
+    def chooseProjectFile(self):
+        """
+        Displays a file dialog, then fills the wizard page's line-edit
+        widget with the chosen filename.
+        """
+        
+        # The default project file name is based on the main source file name,
+        # so first it is necessary to determine which field contains that
+        # filename.
+        if self.field('oldFile'):
+            mainSourcePath = self.field('oldFilePath')
+        if self.field('newFile'):
+            mainSourcePath = self.field('newFilePath')
+        
+        # Now the default filename for the project file can be constructed.
+        defaultPath = os.path.splitext(
+        os.path.basename(mainSourcePath))[0] + '.informatic'
+        defaultPath = os.path.join(self.field('sourceDir'), defaultPath)
+        
+        # Finally, launch the file dialog and use its output to fill the
+        # line-edit widget.
+        self.lineEdit.setText(
+        QFileDialog.getSaveFileName(directory=defaultPath)[0])
+    def isComplete(self):
+        """
+        Checks whether the wizard page is complete. Allows the user to
+        continue if the page's line-edit widget contains text.
+        """
         if self.lineEdit.text():
             return True
         else:
             return False
 
 class NewProjectWizard(QWizard):
+    """
+    Wizard for creating a new Informatic project.
+    """
     def __init__(self, *args, **kwargs):
+        """
+        The project keyword argument, if given, is an Informatic Project
+        object that will be configured to represent the new project. All
+        other arguments are passed directly to the QWizard constructor.
+        """
         if 'project' in kwargs:
             self.project = kwargs.pop('project')
         else:
             self.project = Project()
         super().__init__(*args, **kwargs)
+        
+        # The rest of this function sets up the wizard's layout.
         self.setWindowTitle('New project')
         self.addPage(SourceDirPage())
         self.addPage(MainSourceFilePage())
-        self.addPage(ProjectFilePage())
         self.addPage(CompilerPage())
+        self.addPage(ProjectFilePage())
     def accept(self):
+        """
+        Performs the final actions of setting up the Project object and
+        writing the project file. Finishes the wizard if the project
+        file is successfully written.
+        """
         absSourceDir = self.field('sourceDir')
         projectFilePath = self.field('projectFilePath')
         projectFileDir = os.path.dirname(projectFilePath)
