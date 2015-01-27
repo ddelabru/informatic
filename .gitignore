@@ -55,3 +55,4 @@ target/
 
 # Eric IDE
 *.e4p
+.eric5project/

@@ -3,14 +3,15 @@
 # Copyright (c) 2015 Dominic Delabruere
 
 """
-The sourcectl module contains the SourceCtl widget for editing Inform 6 source
-files and associated code.
+The sourcectl module contains the SourceCtl widget for editing Inform 6
+source files and associated code.
 """
 
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
 import os.path
 
+# These lists may come in handy when the lexer can handle more styles.
 statements = ['box', 'break', 'continue', 'do', 'font', 'for',
               'give', 'if', 'inversion', 'jump', 'move', 'new_line',
               'objectloop', 'print', 'print_ret', 'quit', 'read',
@@ -23,7 +24,13 @@ class InformLexer (QsciLexerCustom):
     Provides a Qscintilla lexer for the Inform 6 language.
     """
     def __init__(self, *args, **kwargs):
+        """
+        Passes all arguments directly to the QsciLexerCustom
+        constructor.
+        """
         super().__init__(*args, **kwargs)
+        
+        # Setup the different lexer styles, each associated with a style number
         self._styles = {
             0: 'Default',
             1: 'Comment',
@@ -33,12 +40,24 @@ class InformLexer (QsciLexerCustom):
             5: 'Directive'}
         for index in self._styles:
             setattr(self, self._styles[index], index)
+    
     def description(self, style):
+        """
+        Takes one argument, style, a style number, and returns its
+        associated description, or an empty string if the style number
+        is not valid.
+        """
         if style in self._styles:
             return self._styles[style]
         else:
             return ''
+    
     def defaultColor(self, style):
+        """
+        Takes one argument, style, a style number, and returns a QColor
+        object representing the default color associated with that
+        style.
+        """
         colors = {
             self.Default: '#000000',
             self.Comment: '#FF3030',
@@ -51,6 +70,10 @@ class InformLexer (QsciLexerCustom):
         else:
             return super().defaultColor(style)
     def defaultFont(self, style):
+        """
+        Takes one argument, style, a style number, and returns a QFont
+        object representing the default font associated with that style.
+        """
         font = QFont()
         font.setStyleHint(QFont.Monospace, QFont.PreferDefault)
         font.setFixedPitch(True)

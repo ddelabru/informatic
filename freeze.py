@@ -15,12 +15,14 @@ by hand when building the Windows executable.
 import sys
 from cx_Freeze import setup, Executable
 
+from informatic import version
+
 base = None
 if sys.platform == 'win32':
     base = 'Win32GUI'
 
 setup(name='informatic', 
-    version='0.1',
+    version=version,
     description='Inform 6 IDE',
     options={'build_exe': {'includes': ['atexit', 'PyQt5.QtPrintSupport'],
         'include_msvcr': True}},

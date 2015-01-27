@@ -278,6 +278,11 @@ class MainWin (QMainWindow):
             self.currentProject = Project(projectFilePath=projectFilePath)
 
 def main():
+    """
+    Provides the main entry point for Informatic. Starts a new
+    application and opens the main window, then waits for these to
+    close.
+    """
     app = QApplication(sys.argv)
     app.lastWindowClosed.connect(app.quit)
     app.setOrganizationName = ('Dominic Delabruere')
