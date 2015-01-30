@@ -75,5 +75,5 @@ command line with ``informatic``.
 Running the "frozen" Windows package
 ------------------------------------
 
-The "frozen" windows package for Informatic comes with all the dependencies,
+The "frozen" Windows package for Informatic comes with all the dependencies,
 so you should only have to run ``informatic.exe``. 
