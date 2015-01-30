@@ -19,6 +19,10 @@ from . import version
 source_file_selectors = ('Inform 6 source files (*.inf);;'
     'Inform 6 libraries (*.h)')
 
+# These strings are used when saving and retrieving settings.
+org_name = 'mrloam'
+app_name = 'Informatic'
+
 class MainWin (QMainWindow):
     def checkUnsavedSourceFiles(self):
         """
@@ -274,7 +278,7 @@ class MainWin (QMainWindow):
             'You have unsaved source files. Quit anyway?')
             if choice != QMessageBox.Yes:
                 return event.ignore()
-        settings = QSettings()
+        settings = QSettings(org_name, app_name)
         settings.setValue('MainWin/size', self.size())
         settings.setValue('projectFilePath',
         self.currentProject.projectFilePath)
@@ -378,7 +382,7 @@ class MainWin (QMainWindow):
         self.setCentralWidget(self.vSplitter)
         
         # Retrieve main window settings if any were saved previously
-        settings = QSettings()
+        settings = QSettings(org_name, app_name)
         size = settings.value('MainWin/size', QSize(800, 600))
         self.resize(size)
         projectFilePath = settings.value('projectFilePath', None)
@@ -398,8 +402,6 @@ def main():
     """
     app = QApplication(sys.argv)
     app.lastWindowClosed.connect(app.quit)
-    app.setOrganizationName = ('Dominic Delabruere')
-    app.setApplicationName = ('Informatic')
     main = MainWin()
     main.show()
     app.exec_()
