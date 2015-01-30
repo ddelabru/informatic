@@ -12,6 +12,10 @@ version. The full text of this license is in the ``LICENSE.GPL3`` file. All the
 source code for Informatic is available at
 <https://github.com/mrloam/informatic>.
 
+Informatic does not come with the Inform 6 compiler or libraries. These must be
+downloaded separately:
+<http://www.ifarchive.org/indexes/if-archiveXinfocomXcompilersXinform6.html>
+
 Implemented features
 --------------------
 
