@@ -68,7 +68,8 @@ class MainWin (QMainWindow):
         # Enable file-related menu buttons, in case they were disabled by a
         # lack of open source files
         for button in (self.saveFileButton, self.saveFileAsButton,
-        self.closeButton, self.undoButton, self.redoButton):
+        self.closeButton, self.undoButton, self.redoButton,
+        self.gotoLineButton, self.saveAllFilesButton):
             button.setEnabled(True)
     def newSourceTab(self):
         """
@@ -168,6 +169,18 @@ class MainWin (QMainWindow):
         """
         if self.tabWidget.count() > 0:
             self.tabWidget.currentWidget().redo()
+    def gotoLine(self):
+        """
+        Prompts the user for a line number, then makes the corresponding
+        line of the active SourceCtl widget visible.
+        """
+        sourceCtl = self.tabWidget.currentWidget()
+        lineNumber = QInputDialog.getInt(self, 'Goto line', 'Line number:',
+          value=0, min=1, max=sourceCtl.lines())[0]
+          
+        # Goto line will only continue if the user entered a valid line number.
+        if lineNumber:
+            sourceCtl.ensureLineVisible(lineNumber)
     def closeTab(self, index):
         """
         Takes one argument, index, the index of a widget displayed in
@@ -190,7 +203,8 @@ class MainWin (QMainWindow):
         # Disable file-related buttons if there are no source tabs open.
         if self.tabWidget.count() < 1:
             for button in (self.saveFileButton, self.saveFileAsButton,
-            self.closeButton, self.undoButton, self.redoButton):
+            self.closeButton, self.undoButton, self.redoButton,
+            self.gotoLineButton, self.saveAllFilesButton):
                 button.setEnabled(False)
         return True
     def closeCurrentTab(self):
@@ -347,6 +361,9 @@ class MainWin (QMainWindow):
         self.redoButton = editMenu.addAction('&Redo')
         self.redoButton.setShortcuts(QKeySequence.Redo)
         self.redoButton.triggered.connect(self.redo)
+        
+        self.gotoLineButton = editMenu.addAction('&Goto line...')
+        self.gotoLineButton.triggered.connect(self.gotoLine)
         
         # A "preferences" button will eventually go here:
         # prefsButton = editMenu.addAction('&Preferences...')
