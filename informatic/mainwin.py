@@ -290,7 +290,10 @@ class MainWin (QMainWindow):
         '&lt;<a href="mailto:dominic.delabruere@gmail.com">'
         'dominic.delabruere@gmail.com</a>&gt;</p>'
         '<p>Informatic is an Inform 6 IDE written by Dominic Delabruere '
-        'for Python 3 using PyQt5.</p>')
+        'for Python 3 using PyQt5.</p>'
+        '<p>Informatic can be used and distributed under the terms of the GNU '
+        'General Public License, either version 3 of the License, or (at your '
+        'option) any later version.</p>')
     def showAboutQt(self):
         """
         Launches the "About Qt" informational dialog.
