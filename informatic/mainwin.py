@@ -65,10 +65,10 @@ class MainWin (QMainWindow):
         # Bring the source file's tab to the foreground
         self.tabWidget.setCurrentIndex(openFilepaths.index(filepath))
         
-        # Enable File menu buttons, in case they were disabled by a lack of
-        # open source files
+        # Enable file-related menu buttons, in case they were disabled by a
+        # lack of open source files
         for button in (self.saveFileButton, self.saveFileAsButton,
-        self.closeButton):
+        self.closeButton, self.undoButton, self.redoButton):
             button.setEnabled(True)
     def newSourceTab(self):
         """
@@ -154,6 +154,20 @@ class MainWin (QMainWindow):
         else:
             return False
         return True
+    def undo(self):
+        """
+        Runs the undo method of the currently active SourceCtl widget,
+        if one is currently active.
+        """
+        if self.tabWidget.count() > 0:
+            self.tabWidget.currentWidget().undo()
+    def redo(self):
+        """
+        Runs the redo method of the currently active SourceCtl widget,
+        if one is currently active.
+        """
+        if self.tabWidget.count() > 0:
+            self.tabWidget.currentWidget().redo()
     def closeTab(self, index):
         """
         Takes one argument, index, the index of a widget displayed in
@@ -172,9 +186,11 @@ class MainWin (QMainWindow):
                 return False
         self.tabWidget.removeTab(index)
         sourceCtl.destroy()
+        
+        # Disable file-related buttons if there are no source tabs open.
         if self.tabWidget.count() < 1:
             for button in (self.saveFileButton, self.saveFileAsButton,
-            self.closeButton):
+            self.closeButton, self.undoButton, self.redoButton):
                 button.setEnabled(False)
         return True
     def closeCurrentTab(self):
@@ -322,10 +338,17 @@ class MainWin (QMainWindow):
         quitButton.setShortcuts(QKeySequence.Quit)
         quitButton.triggered.connect(self.close)
         
-        # Eventually, the Edit menu will go here.
+        editMenu = self.menuBar().addMenu('&Edit')
         
-        # editMenu = self.menuBar().addMenu('&Edit')
+        self.undoButton = editMenu.addAction('&Undo')
+        self.undoButton.setShortcuts(QKeySequence.Undo)
+        self.undoButton.triggered.connect(self.undo)
         
+        self.redoButton = editMenu.addAction('&Redo')
+        self.redoButton.setShortcuts(QKeySequence.Redo)
+        self.redoButton.triggered.connect(self.redo)
+        
+        # A "preferences" button will eventually go here:
         # prefsButton = editMenu.addAction('&Preferences...')
         # prefsButton.setShortcuts(QKeySequence.Preferences)
         
