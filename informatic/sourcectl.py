@@ -169,8 +169,7 @@ class SourceCtl (QsciScintilla):
                 self.setText(sourceFile.read())
         
         # Set some formatting options for the widget
-        self.setMarginType(1, QsciScintilla.NumberMargin)
-        self.setMarginLineNumbers(1, True)
+        self.setMarginWidth(0, '00000')
         lexer = InformLexer(self)
         lexer.setEditor(self)
         self.setLexer(lexer)
