@@ -69,7 +69,8 @@ class MainWin (QMainWindow):
         # lack of open source files
         for button in (self.saveFileButton, self.saveFileAsButton,
         self.closeButton, self.undoButton, self.redoButton,
-        self.gotoLineButton, self.saveAllFilesButton):
+        self.gotoLineButton, self.saveAllFilesButton, self.cutButton,
+        self.copyButton, self.pasteButton, self.selectAllButton):
             button.setEnabled(True)
     def newSourceTab(self):
         """
@@ -169,6 +170,27 @@ class MainWin (QMainWindow):
         """
         if self.tabWidget.count() > 0:
             self.tabWidget.currentWidget().redo()
+    def cut(self):
+        """
+        Runs the cut method of the currently active SourceCtl widget.
+        """
+        self.tabWidget.currentWidget().cut()
+    def copy(self):
+        """
+        Runs the copy method of the currently active SourceCtl widget.
+        """
+        self.tabWidget.currentWidget().copy()
+    def paste(self):
+        """
+        Runs the paste method of the currently active SourceCtl widget.
+        """
+        self.tabWidget.currentWidget().paste()
+    def selectAll(self):
+        """
+        Uses the selectAll method of the currently active SourceCtl
+        widget to select all the text it contains.
+        """
+        self.tabWidget.currentWidget().selectAll()
     def gotoLine(self):
         """
         Prompts the user for a line number, then makes the corresponding
@@ -204,7 +226,8 @@ class MainWin (QMainWindow):
         if self.tabWidget.count() < 1:
             for button in (self.saveFileButton, self.saveFileAsButton,
             self.closeButton, self.undoButton, self.redoButton,
-            self.gotoLineButton, self.saveAllFilesButton):
+            self.gotoLineButton, self.saveAllFilesButton, self.cutButton,
+            self.copyButton, self.pasteButton, self.selectAllButton):
                 button.setEnabled(False)
         return True
     def closeCurrentTab(self):
@@ -364,6 +387,22 @@ class MainWin (QMainWindow):
         self.redoButton = editMenu.addAction('&Redo')
         self.redoButton.setShortcuts(QKeySequence.Redo)
         self.redoButton.triggered.connect(self.redo)
+        
+        self.cutButton = editMenu.addAction('Cu&t')
+        self.cutButton.setShortcuts(QKeySequence.Cut)
+        self.cutButton.triggered.connect(self.cut)
+        
+        self.copyButton = editMenu.addAction('&Copy')
+        self.copyButton.setShortcuts(QKeySequence.Copy)
+        self.copyButton.triggered.connect(self.copy)
+        
+        self.pasteButton = editMenu.addAction('&Paste')
+        self.pasteButton.setShortcuts(QKeySequence.Paste)
+        self.pasteButton.triggered.connect(self.paste)
+        
+        self.selectAllButton = editMenu.addAction('Select &all')
+        self.selectAllButton.setShortcuts(QKeySequence.SelectAll)
+        self.selectAllButton.triggered.connect(self.selectAll)
         
         self.gotoLineButton = editMenu.addAction('&Goto line...')
         self.gotoLineButton.triggered.connect(self.gotoLine)
