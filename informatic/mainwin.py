@@ -203,6 +203,20 @@ class MainWin (QMainWindow):
         # Goto line will only continue if the user entered a valid line number.
         if lineNumber:
             sourceCtl.ensureLineVisible(lineNumber)
+    def findFirst(self):
+        """
+        Prompts the user to input text via a dialog, then searches the
+        text of the active SourceCtl widget for that text.
+        """
+        searchText, ok = QInputDialog.getText(self, 'Find', 'Search text:')
+        if ok:
+            self.tabWidget.currentWidget().findFirst(
+              searchText, False, False, False, True)
+    def findNext(self):
+        """
+        Runs the findNext method of the active SourceCtl widget.
+        """
+        self.tabWidget.currentWidget().findNext()
     def closeTab(self, index):
         """
         Takes one argument, index, the index of a widget displayed in
@@ -403,6 +417,19 @@ class MainWin (QMainWindow):
         self.selectAllButton = editMenu.addAction('Select &all')
         self.selectAllButton.setShortcuts(QKeySequence.SelectAll)
         self.selectAllButton.triggered.connect(self.selectAll)
+        
+        self.findButton = editMenu.addAction('&Find...')
+        self.findButton.setShortcuts(QKeySequence.Find)
+        self.findButton.triggered.connect(self.findFirst)
+        
+        self.findButton = editMenu.addAction('Find &next')
+        self.findButton.setShortcuts(QKeySequence.FindNext)
+        self.findButton.triggered.connect(self.findNext)
+        
+        # If I implement a "Find previous" function, its button will go here:
+        # self.findButton = editMenu.addAction('Find pr&evious')
+        # self.findButton.setShortcuts(QKeySequence.FindPrevious)
+        # self.findButton.triggered.connect(self.findPrevious)
         
         self.gotoLineButton = editMenu.addAction('&Goto line...')
         self.gotoLineButton.triggered.connect(self.gotoLine)

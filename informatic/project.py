@@ -16,7 +16,7 @@ class Project(object):
     Represents an Informatic project.
     """
     def __init__(self, mainSourcePath='', sourceDir='', openSourceFiles=[],
-    projectFilePath='', compilerOptions={'path': 'inform'}):
+    projectFilePath='', compilerOptions={'path': 'inform'}, terpOptions={}):
         """
         Takes five optional keyword arguments representing different
         project options: mainSourcePath, a relative filepath from the
@@ -36,6 +36,7 @@ class Project(object):
         self.openSourceFiles = openSourceFiles
         self.projectFilePath = projectFilePath
         self.compilerOptions = compilerOptions
+        self.terpOptions = terpOptions
     def absSourceDir(self):
         """
         Returns an absolute filepath to the project source directory.
@@ -61,7 +62,7 @@ class Project(object):
         """
         attrDict = {}
         for attr in ['mainSourcePath', 'sourceDir', 'openSourceFiles',
-        'compilerOptions']:
+        'compilerOptions', 'terpOptions']:
             attrDict[attr] = getattr(self, attr)
         json.dump(attrDict, fp, indent=2)
     def load(self, fp):
@@ -73,7 +74,7 @@ class Project(object):
         """
         attrDict = json.load(fp)
         for attr in ['mainSourcePath', 'sourceDir', 'openSourceFiles',
-        'compilerOptions']:
+        'compilerOptions', 'terpOptions']:
             setattr(self, attr, attrDict[attr])
 
 class SourceDirPage(QWizardPage):
