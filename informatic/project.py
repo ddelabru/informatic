@@ -15,25 +15,22 @@ class Project(object):
     """
     Represents an Informatic project.
     """
-    def __init__(self, mainSourcePath='', sourceDir='', openSourceFiles=[],
-    projectFilePath='', compilerOptions={'path': 'inform'}, terpOptions={}):
+    def __init__(self, mainSourcePath='', sourceDir='', projectFilePath='',
+      compilerOptions={'path': 'inform'}, terpOptions={}):
         """
         Takes five optional keyword arguments representing different
         project options: mainSourcePath, a relative filepath from the
         project file to the main source file, an empty string by
         default; sourceDir, a relative filepath from the project file to
         the main source directory, an empty string by default;
-        openSourceFiles, a list of relative filepaths from the project
-        file to open source Files, empty by default; projectFilePath, an
-        absolute filepath to the project file, an empty string by
-        default; and compilerOptions, a dictionary for the project's
-        compiler options, currently containing only one key-value pair:
-        "path", representing the absolute filepath to the compiler,
-        "inform" by default.
+        projectFilePath, an absolute filepath to the project file, an
+        empty string by default; and compilerOptions, a dictionary for
+        the project's compiler options, currently containing only one
+        key-value pair: "path", representing the absolute filepath to
+        the compiler, "inform" by default.
         """
         self.mainSourcePath = mainSourcePath
         self.sourceDir = sourceDir
-        self.openSourceFiles = openSourceFiles
         self.projectFilePath = projectFilePath
         self.compilerOptions = compilerOptions
         self.terpOptions = terpOptions
@@ -61,8 +58,8 @@ class Project(object):
         indenting for human-readability.
         """
         attrDict = {}
-        for attr in ['mainSourcePath', 'sourceDir', 'openSourceFiles',
-        'compilerOptions', 'terpOptions']:
+        for attr in ['mainSourcePath', 'sourceDir', 'compilerOptions',
+          'terpOptions']:
             attrDict[attr] = getattr(self, attr)
         json.dump(attrDict, fp, indent=2)
     def load(self, fp):
@@ -73,9 +70,16 @@ class Project(object):
         project object.
         """
         attrDict = json.load(fp)
-        for attr in ['mainSourcePath', 'sourceDir', 'openSourceFiles',
-        'compilerOptions', 'terpOptions']:
+        for attr in ['mainSourcePath', 'sourceDir', 'compilerOptions',
+          'terpOptions']:
             setattr(self, attr, attrDict[attr])
+        
+        # Only load the compilerOptions and terpOptions elements if they are
+        # present in the file, so Informatic can load older project files that
+        # don't contain those elements
+        for attr in ['compilerOptions', 'terpOptions']:
+            if attr in attrDict:
+                setattr(self, attr, attrDict[attr])
 
 class SourceDirPage(QWizardPage):
     """

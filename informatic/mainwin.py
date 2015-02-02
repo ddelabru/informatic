@@ -299,11 +299,10 @@ class MainWin (QMainWindow):
             # source directory
             self.treeView.cd(self.currentProject.absSourceDir())
             
-            for relPath in (self.currentProject.openSourceFiles + 
-            [self.currentProject.mainSourcePath]):
-                absPath = os.path.normpath(
-                os.path.join(projectFileDir, relPath))
-                self.openSourceFile(absPath)
+            # Open the main source file
+            relPath = self.currentProject.mainSourcePath
+            absPath = os.path.normpath(os.path.join(projectFileDir, relPath))
+            self.openSourceFile(absPath)
     def compileProject(self):
         """
         Spawns a new thread to run the Inform 6 compiler using the
