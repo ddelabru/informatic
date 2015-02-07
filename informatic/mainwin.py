@@ -372,6 +372,8 @@ class MainWin (QMainWindow):
         openButton.triggered.connect(self.chooseExistingFile)
         openButton.setShortcuts(QKeySequence.Open)
         
+        fileMenu.addSeparator()
+        
         self.saveFileButton = fileMenu.addAction('&Save')
         self.saveFileButton.setShortcuts(QKeySequence.Save)
         self.saveFileButton.triggered.connect(self.saveCurrentSource)
@@ -382,6 +384,8 @@ class MainWin (QMainWindow):
         
         self.saveAllFilesButton = fileMenu.addAction('Save a&ll')
         self.saveAllFilesButton.triggered.connect(self.saveAllSources)
+        
+        fileMenu.addSeparator()
         
         self.closeButton = fileMenu.addAction('&Close')
         self.closeButton.setShortcuts(QKeySequence.Close)
@@ -401,6 +405,8 @@ class MainWin (QMainWindow):
         self.redoButton.setShortcuts(QKeySequence.Redo)
         self.redoButton.triggered.connect(self.redo)
         
+        editMenu.addSeparator()
+        
         self.cutButton = editMenu.addAction('Cu&t')
         self.cutButton.setShortcuts(QKeySequence.Cut)
         self.cutButton.triggered.connect(self.cut)
@@ -412,6 +418,8 @@ class MainWin (QMainWindow):
         self.pasteButton = editMenu.addAction('&Paste')
         self.pasteButton.setShortcuts(QKeySequence.Paste)
         self.pasteButton.triggered.connect(self.paste)
+        
+        editMenu.addSeparator()
         
         self.selectAllButton = editMenu.addAction('Select &all')
         self.selectAllButton.setShortcuts(QKeySequence.SelectAll)
