@@ -40,6 +40,7 @@ Running or installing Informatic from source requires that you have the
 following dependencies installed first:
 
 * Python 3
+* Qt 5 (included with some binary distributions of PyQt5)
 * PyQt5
 * PyQt5.Qsci (the Qscintilla plugin for PyQt5, often included with PyQt5
   binaries)
