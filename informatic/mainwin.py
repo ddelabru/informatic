@@ -457,7 +457,7 @@ class MainWin (QMainWindow):
         
         compileButton = projectMenu.addAction('&Compile')
         compileButton.triggered.connect(self.compileProject)
-        compileButton.setShortcut(QKeySequence(Qt.ShiftModifier + Qt.Key_F9))
+        compileButton.setShortcut(Qt.ShiftModifier + Qt.Key_F9)
         
         helpMenu = self.menuBar().addMenu('&Help')
         
