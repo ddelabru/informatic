@@ -366,21 +366,21 @@ class MainWin (QMainWindow):
         
         newFileButton = fileMenu.addAction('&New')
         newFileButton.triggered.connect(self.newSourceTab)
-        newFileButton.setShortcuts(QKeySequence.New)
+        newFileButton.setShortcut(QKeySequence.New)
         
         openButton = fileMenu.addAction('&Open...')
         openButton.triggered.connect(self.chooseExistingFile)
-        openButton.setShortcuts(QKeySequence.Open)
+        openButton.setShortcut(QKeySequence.Open)
         
         fileMenu.addSeparator()
         
         self.saveFileButton = fileMenu.addAction('&Save')
-        self.saveFileButton.setShortcuts(QKeySequence.Save)
+        self.saveFileButton.setShortcut(QKeySequence.Save)
         self.saveFileButton.triggered.connect(self.saveCurrentSource)
         
         self.saveFileAsButton = fileMenu.addAction('&Save as...')
         self.saveFileAsButton.triggered.connect(self.saveCurrentSourceAs)
-        self.saveFileAsButton.setShortcuts(QKeySequence.SaveAs)
+        self.saveFileAsButton.setShortcut(QKeySequence.SaveAs)
         
         self.saveAllFilesButton = fileMenu.addAction('Save a&ll')
         self.saveAllFilesButton.triggered.connect(self.saveAllSources)
@@ -388,49 +388,49 @@ class MainWin (QMainWindow):
         fileMenu.addSeparator()
         
         self.closeButton = fileMenu.addAction('&Close')
-        self.closeButton.setShortcuts(QKeySequence.Close)
+        self.closeButton.setShortcut(QKeySequence.Close)
         self.closeButton.triggered.connect(self.closeCurrentTab)
         
         quitButton = fileMenu.addAction('&Quit')
-        quitButton.setShortcuts(QKeySequence.Quit)
+        quitButton.setShortcut(QKeySequence.Quit)
         quitButton.triggered.connect(self.close)
         
         editMenu = self.menuBar().addMenu('&Edit')
         
         self.undoButton = editMenu.addAction('&Undo')
-        self.undoButton.setShortcuts(QKeySequence.Undo)
+        self.undoButton.setShortcut(QKeySequence.Undo)
         self.undoButton.triggered.connect(self.undo)
         
         self.redoButton = editMenu.addAction('&Redo')
-        self.redoButton.setShortcuts(QKeySequence.Redo)
+        self.redoButton.setShortcut(QKeySequence.Redo)
         self.redoButton.triggered.connect(self.redo)
         
         editMenu.addSeparator()
         
         self.cutButton = editMenu.addAction('Cu&t')
-        self.cutButton.setShortcuts(QKeySequence.Cut)
+        self.cutButton.setShortcut(QKeySequence.Cut)
         self.cutButton.triggered.connect(self.cut)
         
         self.copyButton = editMenu.addAction('&Copy')
-        self.copyButton.setShortcuts(QKeySequence.Copy)
+        self.copyButton.setShortcut(QKeySequence.Copy)
         self.copyButton.triggered.connect(self.copy)
         
         self.pasteButton = editMenu.addAction('&Paste')
-        self.pasteButton.setShortcuts(QKeySequence.Paste)
+        self.pasteButton.setShortcut(QKeySequence.Paste)
         self.pasteButton.triggered.connect(self.paste)
         
         editMenu.addSeparator()
         
         self.selectAllButton = editMenu.addAction('Select &all')
-        self.selectAllButton.setShortcuts(QKeySequence.SelectAll)
+        self.selectAllButton.setShortcut(QKeySequence.SelectAll)
         self.selectAllButton.triggered.connect(self.selectAll)
         
         self.findButton = editMenu.addAction('&Find...')
-        self.findButton.setShortcuts(QKeySequence.Find)
+        self.findButton.setShortcut(QKeySequence.Find)
         self.findButton.triggered.connect(self.findFirst)
         
         self.findButton = editMenu.addAction('Find &next')
-        self.findButton.setShortcuts(QKeySequence.FindNext)
+        self.findButton.setShortcut(QKeySequence.FindNext)
         self.findButton.triggered.connect(self.findNext)
         
         # If I implement a "Find previous" function, its button will go here:
@@ -443,7 +443,7 @@ class MainWin (QMainWindow):
         
         # A "preferences" button will eventually go here:
         # prefsButton = editMenu.addAction('&Preferences...')
-        # prefsButton.setShortcuts(QKeySequence.Preferences)
+        # prefsButton.setShortcut(QKeySequence.Preferences)
         
         projectMenu = self.menuBar().addMenu('&Project')
         
@@ -453,8 +453,11 @@ class MainWin (QMainWindow):
         openProjectButton = projectMenu.addAction('&Open...')
         openProjectButton.triggered.connect(self.openProjectFile)
         
+        projectMenu.addSeparator()
+        
         compileButton = projectMenu.addAction('&Compile')
         compileButton.triggered.connect(self.compileProject)
+        compileButton.setShortcut(QKeySequence(Qt.ShiftModifier + Qt.Key_F9))
         
         helpMenu = self.menuBar().addMenu('&Help')
         
