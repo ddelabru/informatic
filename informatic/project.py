@@ -281,16 +281,14 @@ class CompilerPage(QWizardPage):
         super().__init__(*args, **kwargs)
         
         # The rest of this function sets up the wizard page's layout,
-        # connecting widgets to functions and wizard fields as necessary.
-        self.setTitle('Inform 6 compiler')
-        
+        # connecting widgets to functions and wizard fields as necessary.     
         mainLayout = QVBoxLayout()
         
         pathLayout = QHBoxLayout()
         pathLayout.addWidget(QLabel('Compiler path:'))
         self.lineEdit = QLineEdit()
         self.registerField('compilerPath*', self.lineEdit)
-        self.lineEdit.setText('inform')
+        self.lineEdit.setText(self.compilerOptions.get('path', 'inform'))
         self.lineEdit.textChanged.connect(self.completeChanged)
         pathLayout.addWidget(self.lineEdit)
         chooser = QPushButton('Choose...')
@@ -319,17 +317,17 @@ class CompilerPage(QWizardPage):
         versionGroupBox.setLayout(versionLayout)        
         mainLayout.addWidget(versionGroupBox)
         
-        storyFileVersions = {
+        self.storyFileVersions = {
           'v3': radio_v3,
           'v4': radio_v4,
           'v5': radio_v5,
           'v6': radio_v6,
           'v8': radio_v8,
           'G': radio_G}
-        for key in storyFileVersions:
-            self.registerField(key, storyFileVersions[key])
+        for key in self.storyFileVersions:
+            self.registerField(key, self.storyFileVersions[key])
             if self.compilerOptions.get('version', 'v5') == key:
-                storyFileVersions[key].setChecked(True)
+                self.storyFileVersions[key].setChecked(True)
         
         self.setLayout(mainLayout)
     def chooseCompilerPath(self):
@@ -347,6 +345,16 @@ class CompilerPage(QWizardPage):
             return True
         else:
             return False
+    def storyFileVersion(self):
+        """
+        Returns a string reprpesenting the story file version switch
+        that should be passed to the Inform 6 compiler, based on
+        user-selected options. Default is 'v5'.
+        """
+        for key in self.storyFileVersions:
+            if self.field(key):
+                return key
+        return 'v5'
 
 class ProjectFilePage(QWizardPage):
     """
@@ -425,9 +433,9 @@ class NewProjectWizard(QWizard):
         self.setWindowTitle('New project')
         self.addPage(SourceDirPage())
         self.addPage(MainSourceFilePage())
-        compilerPage = CompilerPage(self.project.compilerOptions)
-        compilerPage.setTitle('Compiler options')
-        self.addPage(compilerPage)
+        self.compilerPage = CompilerPage(self.project.compilerOptions)
+        self.compilerPage.setTitle('Compiler options')
+        self.addPage(self.compilerPage)
         self.addPage(ProjectFilePage())
     def accept(self):
         """
@@ -449,6 +457,8 @@ class NewProjectWizard(QWizard):
             self.project.mainSourcePath = os.path.relpath(absMainSourcePath,
             start=projectFileDir)
         self.project.compilerOptions = {'path': self.field('compilerPath')}
+        self.project.compilerOptions['version'] = \
+          self.compilerPage.storyFileVersion()
         try:
             with open(projectFilePath, 'w', encoding='utf_8') as projectFile:
                 self.project.dump(projectFile)
@@ -473,17 +483,19 @@ class CompilerOptionsWizard(QWizard):
         self.project = project
         super().__init__(*args, **kwargs)
         self.setWindowTitle('Compiler options')
-        self.addPage(CompilerPage(project.compilerOptions))
+        self.compilerPage = CompilerPage(project.compilerOptions)
+        self.addPage(self.compilerPage)
     def accept(self):
         """
         Processes Inform 6 compiler options and saves the project file
         when the user finishes the compiler options wizard.
         """
+        
         self.project.compilerOptions['path'] = self.field('compilerPath')
-        for field in ['v3', 'v4', 'v5', 'v6', 'v8', 'G']:
-            if self.field(field):
-                self.project.compilerOptions['version'] = field
-                break
+        
+        self.project.compilerOptions['version'] = \
+          self.compilerPage.storyFileVersion()
+        
         try:
             with open(self.project.projectFilePath, 'w', encoding='utf_8') \
             as projectFile:

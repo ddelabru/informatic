@@ -28,11 +28,15 @@ class Compiler(QThread):
         for the compiler process to close, then emits the done() signal
         with a string containing the compiler output as its argument.
         """
-        informProc = Popen([self.compilerPath, '-' + self.version,
-          self.sourcePath],
-        cwd=self.dir, stdout=PIPE, stderr=PIPE)
-        results = informProc.communicate()[0]
-        self.done.emit(results.decode())
+        try:
+            informProc = Popen([self.compilerPath, '-' + self.version,
+              self.sourcePath], cwd=self.dir, stdout=PIPE, stderr=PIPE)
+        except Exception as err:
+            results = str(err)
+        else:
+          results = informProc.communicate()[0].decode()
+        
+        self.done.emit(results)
         
     def __init__(self, *args, project=Project(), **kwargs):
         """
