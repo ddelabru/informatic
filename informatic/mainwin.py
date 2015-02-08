@@ -308,9 +308,10 @@ class MainWin (QMainWindow):
             self.openSourceFile(absPath)
     def compileProject(self):
         """
-        Spawns a new thread to run the Inform 6 compiler using the
-        current project's compiler options.
+        Calls saveAllSources, then spawns a new thread to run the Inform
+        6 compiler using the current project's compiler options.
         """
+        self.saveAllSources()
         self.compilerEdit.setText('')
         compiler = Compiler(self, project=self.currentProject)
         compiler.done.connect(self.showCompilerOutput)
