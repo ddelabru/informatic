@@ -16,7 +16,7 @@ class Project(object):
     Represents an Informatic project.
     """
     def __init__(self, mainSourcePath='', sourceDir='', projectFilePath='',
-      compilerOptions={'path': 'inform'}, terpOptions={}):
+      compilerOptions={'path': 'inform', 'version': 'v5'}, terpOptions={}):
         """
         Takes five optional keyword arguments representing different
         project options: mainSourcePath, a relative filepath from the
@@ -266,29 +266,72 @@ class MainSourceFilePage(QWizardPage):
 
 class CompilerPage(QWizardPage):
     """
-    Page for the new project wizard that allows the user to set the
-    project's compiler options.
+    Wizard page that allows the user to set the project's compiler
+    options. Used by both the new project wizard and the compiler
+    options wizard.
     """
-    def __init__(self, *args, **kwargs):
+    def __init__(self, compilerOptions, *args, **kwargs):
         """
-        Passes all arguments directly to the QWizardPage constructor.
+        The positional argument compilerOptions is processed as a
+        dictionary containing compiler Options for an Informatic
+        project. All remaining arguments are passed directly to the
+        QWizardPage constructor.
         """
+        self.compilerOptions = compilerOptions
         super().__init__(*args, **kwargs)
         
         # The rest of this function sets up the wizard page's layout,
         # connecting widgets to functions and wizard fields as necessary.
         self.setTitle('Inform 6 compiler')
-        layout = QHBoxLayout()
-        layout.addWidget(QLabel('Compiler path:'))
+        
+        mainLayout = QVBoxLayout()
+        
+        pathLayout = QHBoxLayout()
+        pathLayout.addWidget(QLabel('Compiler path:'))
         self.lineEdit = QLineEdit()
         self.registerField('compilerPath*', self.lineEdit)
         self.lineEdit.setText('inform')
         self.lineEdit.textChanged.connect(self.completeChanged)
-        layout.addWidget(self.lineEdit)
+        pathLayout.addWidget(self.lineEdit)
         chooser = QPushButton('Choose...')
         chooser.clicked.connect(self.chooseCompilerPath)
-        layout.addWidget(chooser)
-        self.setLayout(layout)
+        pathLayout.addWidget(chooser)
+        mainLayout.addLayout(pathLayout)
+        
+        versionGroupBox = QGroupBox('Story file version:')
+        versionLayout = QHBoxLayout()
+        versionLeftLayout = QVBoxLayout()
+        radio_v3 = QRadioButton('Z-code version 3 "Standard"')
+        versionLeftLayout.addWidget(radio_v3)
+        radio_v4 = QRadioButton('Z-code version 4 "Plus"')
+        versionLeftLayout.addWidget(radio_v4)
+        radio_v5 = QRadioButton('Z-code version 5 "Advanced" (default)')
+        versionLeftLayout.addWidget(radio_v5)
+        versionRightLayout = QVBoxLayout()
+        radio_v6 = QRadioButton('Z-code version 6 graphical')
+        versionRightLayout.addWidget(radio_v6)
+        radio_v8 = QRadioButton('Z-code version 8 expanded "Advanced"')
+        versionRightLayout.addWidget(radio_v8)
+        radio_G = QRadioButton('Glulx')
+        versionRightLayout.addWidget(radio_G)
+        versionLayout.addLayout(versionLeftLayout)
+        versionLayout.addLayout(versionRightLayout)
+        versionGroupBox.setLayout(versionLayout)        
+        mainLayout.addWidget(versionGroupBox)
+        
+        storyFileVersions = {
+          'v3': radio_v3,
+          'v4': radio_v4,
+          'v5': radio_v5,
+          'v6': radio_v6,
+          'v8': radio_v8,
+          'G': radio_G}
+        for key in storyFileVersions:
+            self.registerField(key, storyFileVersions[key])
+            if self.compilerOptions.get('version', 'v5') == key:
+                storyFileVersions[key].setChecked(True)
+        
+        self.setLayout(mainLayout)
     def chooseCompilerPath(self):
         """
         Sets the contents of the page's compiler path line-edit widget
@@ -382,7 +425,9 @@ class NewProjectWizard(QWizard):
         self.setWindowTitle('New project')
         self.addPage(SourceDirPage())
         self.addPage(MainSourceFilePage())
-        self.addPage(CompilerPage())
+        compilerPage = CompilerPage(self.project.compilerOptions)
+        compilerPage.setTitle('Compiler options')
+        self.addPage(compilerPage)
         self.addPage(ProjectFilePage())
     def accept(self):
         """
@@ -413,4 +458,39 @@ class NewProjectWizard(QWizard):
             'file:\n\n' + str(err))
         else:
             self.parent().displayProjectFile(projectFilePath)
-        return super().accept()
+            return super().accept()
+
+class CompilerOptionsWizard(QWizard):
+    """
+    Wizard for editing the compiler options of an Informatic project.
+    """
+    def __init__(self, project, *args, **kwargs):
+        """
+        The positional object project is interpeted as a Project object.
+        All other arguments are passed directly to the QWizard
+        constructor.
+        """
+        self.project = project
+        super().__init__(*args, **kwargs)
+        self.setWindowTitle('Compiler options')
+        self.addPage(CompilerPage(project.compilerOptions))
+    def accept(self):
+        """
+        Processes Inform 6 compiler options and saves the project file
+        when the user finishes the compiler options wizard.
+        """
+        self.project.compilerOptions['path'] = self.field('compilerPath')
+        for field in ['v3', 'v4', 'v5', 'v6', 'v8', 'G']:
+            if self.field(field):
+                self.project.compilerOptions['version'] = field
+                break
+        try:
+            with open(self.project.projectFilePath, 'w', encoding='utf_8') \
+            as projectFile:
+                self.project.dump(projectFile)
+        except Exception as err:
+            QMessageBox.critical(self, 'Filesystem error',
+            'Informatic encountered an error while updating the project '
+            'file:\n\n' + str(err))
+        else:
+            return super().accept()

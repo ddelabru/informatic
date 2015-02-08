@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import *
 from .dirtreeview import DirTreeView
 from .sourcectl import SourceCtl
 from .compiler import Compiler
-from .project import Project, NewProjectWizard
+from .project import Project, NewProjectWizard, CompilerOptionsWizard
 from . import version
 
 # This text is used in a few file dialogs.
@@ -306,6 +306,11 @@ class MainWin (QMainWindow):
             relPath = self.currentProject.mainSourcePath
             absPath = os.path.normpath(os.path.join(projectFileDir, relPath))
             self.openSourceFile(absPath)
+    def editCompilerOptions(self):
+        """
+        Launches a dialog for the user to set Inform 6 compiler options.
+        """
+        CompilerOptionsWizard(self.currentProject, parent=self).show()
     def compileProject(self):
         """
         Calls saveAllSources, then spawns a new thread to run the Inform
@@ -458,6 +463,9 @@ class MainWin (QMainWindow):
         openProjectButton.triggered.connect(self.openProjectFile)
         
         projectMenu.addSeparator()
+        
+        compilerOptionsButton = projectMenu.addAction('Co&mpiler options...')
+        compilerOptionsButton.triggered.connect(self.editCompilerOptions)
         
         compileButton = projectMenu.addAction('&Compile')
         compileButton.triggered.connect(self.compileProject)

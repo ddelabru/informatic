@@ -28,7 +28,8 @@ class Compiler(QThread):
         for the compiler process to close, then emits the done() signal
         with a string containing the compiler output as its argument.
         """
-        informProc = Popen([self.compilerPath, self.sourcePath],
+        informProc = Popen([self.compilerPath, '-' + self.version,
+          self.sourcePath],
         cwd=self.dir, stdout=PIPE, stderr=PIPE)
         results = informProc.communicate()[0]
         self.done.emit(results.decode())
@@ -40,6 +41,7 @@ class Compiler(QThread):
         passed to the QThread constructor.
         """
         super().__init__(*args, **kwargs)
-        self.compilerPath = project.compilerOptions['path']
+        self.compilerPath = project.compilerOptions.get('path', 'inform')
+        self.version = project.compilerOptions.get('version', 'v5')
         self.sourcePath = project.absMainSource()
         self.dir = project.absSourceDir()
