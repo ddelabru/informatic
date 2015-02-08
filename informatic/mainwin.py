@@ -114,10 +114,13 @@ class MainWin (QMainWindow):
         self.saveSource(self.tabWidget.currentWidget())
     def saveAllSources(self):
         """
-        Calls saveSource on every open SourceCtl widget.
+        Calls saveSource on every open SourceCtl widget with unsaved
+        content.
         """
         for index in range(0, self.tabWidget.count()):
-            self.saveSource(self.tabWidget.widget(index))
+            widget = self.tabWidget.widget(index)
+            if not widget.saved:
+                self.saveSource(self.tabWidget.widget(index))
     def saveCurrentSourceAs(self):
         """
         Calls getSaveFileName, then uses the returned filepath to save
