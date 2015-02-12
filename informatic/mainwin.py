@@ -17,8 +17,10 @@ from .rc import *
 from . import version
 
 # This text is used in a few file dialogs.
-source_file_selectors = ('Inform 6 source files (*.inf);;'
-    'Inform 6 libraries (*.h)')
+source_file_selectors = QCoreApplication.translate(
+  'source_file_selectors', 
+  'Inform 6 source files (*.inf);;'
+  'Inform 6 libraries (*.h)')
 
 # These strings are used when saving and retrieving settings.
 org_name = 'mrloam'
@@ -79,7 +81,7 @@ class MainWin (QMainWindow):
         filepath.
         """
         sourceCtl = SourceCtl(mainWindow=self)
-        self.tabWidget.addTab(sourceCtl, 'Untitled')
+        self.tabWidget.addTab(sourceCtl, self.tr('Untitled'))
         self.tabWidget.setCurrentWidget(sourceCtl)
     def openProjectFile(self):
         """
@@ -88,7 +90,7 @@ class MainWin (QMainWindow):
         chosen filepath.
         """
         path = QFileDialog.getOpenFileName(
-        filter='Informatic project files (*.informatic)')[0]
+        filter=self.tr('Informatic project files (*.informatic)'))[0]
         if os.path.isfile(path):
             self.displayProjectFile(path)
     def saveSource(self, sourceCtl):
@@ -201,8 +203,8 @@ class MainWin (QMainWindow):
         line of the active SourceCtl widget visible.
         """
         sourceCtl = self.tabWidget.currentWidget()
-        lineNumber = QInputDialog.getInt(self, 'Goto line', 'Line number:',
-          value=0, min=1, max=sourceCtl.lines())[0]
+        lineNumber = QInputDialog.getInt(self, self.tr('Goto line'), 
+         self.tr('Line number:'), value=0, min=1, max=sourceCtl.lines())[0]
           
         # Goto line will only continue if the user entered a valid line number.
         if lineNumber:
@@ -212,7 +214,8 @@ class MainWin (QMainWindow):
         Prompts the user to input text via a dialog, then searches the
         text of the active SourceCtl widget for that text.
         """
-        searchText, ok = QInputDialog.getText(self, 'Find', 'Search text:')
+        searchText, ok = QInputDialog.getText(self, self.tr('Find'),
+          self.tr('Search text:'))
         if ok:
             self.tabWidget.currentWidget().findFirst(
               searchText, False, False, False, True)
@@ -232,9 +235,9 @@ class MainWin (QMainWindow):
         """
         sourceCtl = self.tabWidget.widget(index)
         if not sourceCtl.saved:
-            choice = QMessageBox.question(self, 'Unsaved source file',
-            'The source file you are attempting to close has unsaved changes. '
-            'Close without saving?')
+            choice = QMessageBox.question(self, self.tr('Unsaved source file'),
+            self.tr('The source file you are attempting to close has unsaved '
+            'changes. Close without saving?'))
             if choice != QMessageBox.Yes:
                 return False
         self.tabWidget.removeTab(index)
@@ -282,9 +285,9 @@ class MainWin (QMainWindow):
             # If an error occurs while loading the project file, display an
             # error dialog.
             self.currentProject = Project()
-            QMessageBox.critical(self, 'Project file error',
-            'Informatic encountered an error while opening project file '
-            + projectFilePath + ':\n\n' + str(err))
+            QMessageBox.critical(self, self.tr('Project file error'),
+            self.tr('Informatic encountered an error while opening project '
+            'file ') + projectFilePath + ':\n\n' + str(err))
         else:
             self.currentProject.projectFilePath = projectFilePath
             
@@ -330,16 +333,16 @@ class MainWin (QMainWindow):
         Launches the "About" dialog with information about Informatic.
         """
         QMessageBox.about(self,
-        'About Informatic',
-        '<h3>Informatic ' + version + '</h3>'
-        '<p>Copyright © 2015 Dominic Delabruere '
+        self.tr('About Informatic'),
+        '<h3>Informatic ' + version + '</h3>' +
+        self.tr('<p>Copyright © 2015 Dominic Delabruere '
         '&lt;<a href="mailto:dominic.delabruere@gmail.com">'
         'dominic.delabruere@gmail.com</a>&gt;</p>'
         '<p>Informatic is an Inform 6 IDE written by Dominic Delabruere '
         'for Python 3 using PyQt5.</p>'
         '<p>Informatic can be used and distributed under the terms of the GNU '
         'General Public License, either version 3 of the License, or (at your '
-        'option) any later version.</p>')
+        'option) any later version.</p>'))
     def showAboutQt(self):
         """
         Launches the "About Qt" informational dialog.
@@ -353,8 +356,9 @@ class MainWin (QMainWindow):
         the main window's settings, then allows it to close.
         """
         if self.checkUnsavedSourceFiles():
-            choice = QMessageBox.question(self, 'Unsaved source files', 
-            'You have unsaved source files. Quit anyway?')
+            choice = QMessageBox.question(self,
+              self.tr('Unsaved source files'), 
+              self.tr('You have unsaved source files. Quit anyway?'))
             if choice != QMessageBox.Yes:
                 return event.ignore()
         settings = QSettings(org_name, app_name)
@@ -373,112 +377,113 @@ class MainWin (QMainWindow):
         
         # The code to create the Main Menu and connect its buttons to
         # appropriate functions begins here.
-        fileMenu = self.menuBar().addMenu('&File')
+        fileMenu = self.menuBar().addMenu(self.tr('&File'))
         
-        newFileButton = fileMenu.addAction('&New')
+        newFileButton = fileMenu.addAction(self.tr('&New'))
         newFileButton.triggered.connect(self.newSourceTab)
         newFileButton.setShortcut(QKeySequence.New)
         
-        openButton = fileMenu.addAction('&Open...')
+        openButton = fileMenu.addAction(self.tr('&Open...'))
         openButton.triggered.connect(self.chooseExistingFile)
         openButton.setShortcut(QKeySequence.Open)
         
         fileMenu.addSeparator()
         
-        self.saveFileButton = fileMenu.addAction('&Save')
+        self.saveFileButton = fileMenu.addAction(self.tr('&Save'))
         self.saveFileButton.setShortcut(QKeySequence.Save)
         self.saveFileButton.triggered.connect(self.saveCurrentSource)
         
-        self.saveFileAsButton = fileMenu.addAction('&Save as...')
+        self.saveFileAsButton = fileMenu.addAction(self.tr('&Save as...'))
         self.saveFileAsButton.triggered.connect(self.saveCurrentSourceAs)
         self.saveFileAsButton.setShortcut(QKeySequence.SaveAs)
         
-        self.saveAllFilesButton = fileMenu.addAction('Save a&ll')
+        self.saveAllFilesButton = fileMenu.addAction(self.tr('Save a&ll'))
         self.saveAllFilesButton.triggered.connect(self.saveAllSources)
         
         fileMenu.addSeparator()
         
-        self.closeButton = fileMenu.addAction('&Close')
+        self.closeButton = fileMenu.addAction(self.tr('&Close'))
         self.closeButton.setShortcut(QKeySequence.Close)
         self.closeButton.triggered.connect(self.closeCurrentTab)
         
-        quitButton = fileMenu.addAction('&Quit')
+        quitButton = fileMenu.addAction(self.tr('&Quit'))
         quitButton.setShortcut(QKeySequence.Quit)
         quitButton.triggered.connect(self.close)
         
-        editMenu = self.menuBar().addMenu('&Edit')
+        editMenu = self.menuBar().addMenu(self.tr('&Edit'))
         
-        self.undoButton = editMenu.addAction('&Undo')
+        self.undoButton = editMenu.addAction(self.tr('&Undo'))
         self.undoButton.setShortcut(QKeySequence.Undo)
         self.undoButton.triggered.connect(self.undo)
         
-        self.redoButton = editMenu.addAction('&Redo')
+        self.redoButton = editMenu.addAction(self.tr('&Redo'))
         self.redoButton.setShortcut(QKeySequence.Redo)
         self.redoButton.triggered.connect(self.redo)
         
         editMenu.addSeparator()
         
-        self.cutButton = editMenu.addAction('Cu&t')
+        self.cutButton = editMenu.addAction(self.tr('Cu&t'))
         self.cutButton.setShortcut(QKeySequence.Cut)
         self.cutButton.triggered.connect(self.cut)
         
-        self.copyButton = editMenu.addAction('&Copy')
+        self.copyButton = editMenu.addAction(self.tr('&Copy'))
         self.copyButton.setShortcut(QKeySequence.Copy)
         self.copyButton.triggered.connect(self.copy)
         
-        self.pasteButton = editMenu.addAction('&Paste')
+        self.pasteButton = editMenu.addAction(self.tr('&Paste'))
         self.pasteButton.setShortcut(QKeySequence.Paste)
         self.pasteButton.triggered.connect(self.paste)
         
         editMenu.addSeparator()
         
-        self.selectAllButton = editMenu.addAction('Select &all')
+        self.selectAllButton = editMenu.addAction(self.tr('Select &all'))
         self.selectAllButton.setShortcut(QKeySequence.SelectAll)
         self.selectAllButton.triggered.connect(self.selectAll)
         
-        self.findButton = editMenu.addAction('&Find...')
+        self.findButton = editMenu.addAction(self.tr('&Find...'))
         self.findButton.setShortcut(QKeySequence.Find)
         self.findButton.triggered.connect(self.findFirst)
         
-        self.findButton = editMenu.addAction('Find &next')
+        self.findButton = editMenu.addAction(self.tr('Find &next'))
         self.findButton.setShortcut(QKeySequence.FindNext)
         self.findButton.triggered.connect(self.findNext)
         
         # If I implement a "Find previous" function, its button will go here:
-        # self.findButton = editMenu.addAction('Find pr&evious')
+        # self.findButton = editMenu.addAction(self.tr('Find pr&evious'))
         # self.findButton.setShortcuts(QKeySequence.FindPrevious)
         # self.findButton.triggered.connect(self.findPrevious)
         
-        self.gotoLineButton = editMenu.addAction('&Goto line...')
+        self.gotoLineButton = editMenu.addAction(self.tr('&Goto line...'))
         self.gotoLineButton.triggered.connect(self.gotoLine)
         
         # A "preferences" button will eventually go here:
-        # prefsButton = editMenu.addAction('&Preferences...')
+        # prefsButton = editMenu.addAction(self.tr('&Preferences...'))
         # prefsButton.setShortcut(QKeySequence.Preferences)
         
-        projectMenu = self.menuBar().addMenu('&Project')
+        projectMenu = self.menuBar().addMenu(self.tr('&Project'))
         
-        newProjectButton = projectMenu.addAction('&New...')
+        newProjectButton = projectMenu.addAction(self.tr('&New...'))
         newProjectButton.triggered.connect(self.createNewProject)
         
-        openProjectButton = projectMenu.addAction('&Open...')
+        openProjectButton = projectMenu.addAction(self.tr('&Open...'))
         openProjectButton.triggered.connect(self.openProjectFile)
         
         projectMenu.addSeparator()
         
-        compilerOptionsButton = projectMenu.addAction('Co&mpiler options...')
+        compilerOptionsButton = projectMenu.addAction(
+          self.tr('Co&mpiler options...'))
         compilerOptionsButton.triggered.connect(self.editCompilerOptions)
         
-        compileButton = projectMenu.addAction('&Compile')
+        compileButton = projectMenu.addAction(self.tr('&Compile'))
         compileButton.triggered.connect(self.compileProject)
         compileButton.setShortcut(Qt.ShiftModifier + Qt.Key_F9)
         
-        helpMenu = self.menuBar().addMenu('&Help')
+        helpMenu = self.menuBar().addMenu(self.tr('&Help'))
         
-        aboutButton = helpMenu.addAction('&About Informatic')
+        aboutButton = helpMenu.addAction(self.tr('&About Informatic'))
         aboutButton.triggered.connect(self.showAbout)
         
-        aboutQtButton = helpMenu.addAction('About &Qt')
+        aboutQtButton = helpMenu.addAction(self.tr('About &Qt'))
         aboutQtButton.triggered.connect(self.showAboutQt)
         
         # Code to create the main window's primary widgets begins here.

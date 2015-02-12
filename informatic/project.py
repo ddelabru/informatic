@@ -94,16 +94,16 @@ class SourceDirPage(QWizardPage):
         
         # The rest of this function sets up the layout of the wizard page,
         # connecting widgets to fields and functions as it does.
-        self.setTitle('Source directory')
+        self.setTitle(self.tr('Source directory'))
         layout = QHBoxLayout()
         label = QLabel()
-        label.setText('Source directory:')
+        label.setText(self.tr('Source directory:'))
         layout.addWidget(label)
         self.lineEdit = QLineEdit()
         self.registerField('sourceDir*', self.lineEdit)
         self.lineEdit.textChanged.connect(self.completeChanged)
         layout.addWidget(self.lineEdit)
-        button = QPushButton('Choose...')
+        button = QPushButton(self.tr('Choose...'))
         button.clicked.connect(self.chooseSourceDir)
         layout.addWidget(button)
         self.setLayout(layout)
@@ -136,12 +136,12 @@ class MainSourceFilePage(QWizardPage):
         super().__init__(*args, **kwargs)
         
         # The rest of the function sets up the layout of the wizard page.
-        self.setTitle('Main source file')
+        self.setTitle(self.tr('Main source file'))
         layout = QVBoxLayout()
         
         # The widgets for choosing the path of a new main source file.
         self.newFileButton = QRadioButton(
-        'Create new file as main source file:')
+        self.tr('Create new file as main source file:'))
         # This radio button is connected to a function that re-evaluates which
         # widgets should be active based on user choices.
         self.newFileButton.toggled.connect(self.reEnableWidgets)
@@ -153,7 +153,7 @@ class MainSourceFilePage(QWizardPage):
         self.newFileLineEdit.textChanged.connect(self.completeChanged)
         self.registerField('newFilePath', self.newFileLineEdit)
         newFileHBox.addWidget(self.newFileLineEdit)
-        self.newFileChooser = QPushButton('Choose...')
+        self.newFileChooser = QPushButton(self.tr('Choose...'))
         self.newFileChooser.setEnabled(False)
         self.newFileChooser.clicked.connect(self.chooseNewFile)
         newFileHBox.addWidget(self.newFileChooser)
@@ -163,7 +163,7 @@ class MainSourceFilePage(QWizardPage):
         
         # The widgets for choosing the path of an existing main source file.
         self.oldFileButton = QRadioButton(
-        'Use existing file as main source file:')
+        self.tr('Use existing file as main source file:'))
         # Again, a radio button is connected to the function that re-evaluates
         # which widgets should be active.
         self.oldFileButton.toggled.connect(self.reEnableWidgets)
@@ -175,7 +175,7 @@ class MainSourceFilePage(QWizardPage):
         self.oldFileLineEdit.textChanged.connect(self.completeChanged)
         self.registerField('oldFilePath', self.oldFileLineEdit)
         oldFileHBox.addWidget(self.oldFileLineEdit)
-        self.oldFileChooser = QPushButton('Choose...')
+        self.oldFileChooser = QPushButton(self.tr('Choose...'))
         self.oldFileChooser.setEnabled(False)
         self.oldFileChooser.clicked.connect(self.chooseOldFile)
         oldFileHBox.addWidget(self.oldFileChooser)
@@ -210,7 +210,7 @@ class MainSourceFilePage(QWizardPage):
         """
         self.newFileLineEdit.setText(QFileDialog.getSaveFileName(
         directory=os.path.join(self.field('sourceDir'), 'main.inf'),
-        filter='Inform 6 source files (*.inf)')[0])
+        filter=self.tr('Inform 6 source files (*.inf)'))[0])
     def chooseOldFile(self):
         """
         Retrieves the filepath for an existing main source file for the
@@ -219,7 +219,7 @@ class MainSourceFilePage(QWizardPage):
         """
         self.oldFileLineEdit.setText(QFileDialog.getOpenFileName(
         directory=self.field('sourceDir'),
-        filter='Inform 6 source files (*.inf *.i6)')[0])
+        filter=self.tr('Inform 6 source files (*.inf *.i6)'))[0])
     def isComplete(self):
         """
         Checks whether the the wizard page is complete. Allows the user
@@ -247,9 +247,9 @@ class MainSourceFilePage(QWizardPage):
         if self.newFileButton.isChecked():
             if os.path.exists(self.newFileLineEdit.text()):
                 overwriteResponse = QMessageBox.question(self,
-                'File overwrite',
-                'A file already exists at the filepath you have given. Is it '
-                'okay to overwrite this with a blank file?')
+                self.tr('File overwrite'),
+                self.tr('A file already exists at the filepath you have given.'
+                ' Is it okay to overwrite this with a blank file?'))
                 if overwriteResponse != QMessageBox.Yes:
                     return False
             try:
@@ -257,9 +257,9 @@ class MainSourceFilePage(QWizardPage):
                     newFile.write('')
                 return True
             except Exception as err:
-                QMessageBox.critical(self, 'Filesystem error',
-                'Informatic encountered an error while creating a new source '
-                'file:\n\n' + str(err))
+                QMessageBox.critical(self, self.tr('Filesystem error'),
+                self.tr('Informatic encountered an error while creating a new '
+                'source file:\n\n') + str(err))
                 return False
         else:
             return True
@@ -285,32 +285,34 @@ class CompilerPage(QWizardPage):
         mainLayout = QVBoxLayout()
         
         pathLayout = QHBoxLayout()
-        pathLayout.addWidget(QLabel('Compiler path:'))
+        pathLayout.addWidget(QLabel(self.tr('Compiler path:')))
         self.lineEdit = QLineEdit()
         self.registerField('compilerPath*', self.lineEdit)
         self.lineEdit.setText(self.compilerOptions.get('path', 'inform'))
         self.lineEdit.textChanged.connect(self.completeChanged)
         pathLayout.addWidget(self.lineEdit)
-        chooser = QPushButton('Choose...')
+        chooser = QPushButton(self.tr('Choose...'))
         chooser.clicked.connect(self.chooseCompilerPath)
         pathLayout.addWidget(chooser)
         mainLayout.addLayout(pathLayout)
         
-        versionGroupBox = QGroupBox('Story file version:')
+        versionGroupBox = QGroupBox(self.tr('Story file version:'))
         versionLayout = QHBoxLayout()
         versionLeftLayout = QVBoxLayout()
-        radio_v3 = QRadioButton('Z-code version 3 "Standard"')
+        radio_v3 = QRadioButton(self.tr('Z-code version 3 "Standard"'))
         versionLeftLayout.addWidget(radio_v3)
-        radio_v4 = QRadioButton('Z-code version 4 "Plus"')
+        radio_v4 = QRadioButton(self.tr('Z-code version 4 "Plus"'))
         versionLeftLayout.addWidget(radio_v4)
-        radio_v5 = QRadioButton('Z-code version 5 "Advanced" (default)')
+        radio_v5 = QRadioButton(
+          self.tr('Z-code version 5 "Advanced" (default)'))
         versionLeftLayout.addWidget(radio_v5)
         versionRightLayout = QVBoxLayout()
-        radio_v6 = QRadioButton('Z-code version 6 graphical')
+        radio_v6 = QRadioButton(self.tr('Z-code version 6 graphical'))
         versionRightLayout.addWidget(radio_v6)
-        radio_v8 = QRadioButton('Z-code version 8 expanded "Advanced"')
+        radio_v8 = QRadioButton(
+          self.tr('Z-code version 8 expanded "Advanced"'))
         versionRightLayout.addWidget(radio_v8)
-        radio_G = QRadioButton('Glulx')
+        radio_G = QRadioButton(self.tr('Glulx'))
         versionRightLayout.addWidget(radio_G)
         versionLayout.addLayout(versionLeftLayout)
         versionLayout.addLayout(versionRightLayout)
@@ -369,14 +371,14 @@ class ProjectFilePage(QWizardPage):
         
         # The rest of this function sets up the wizard page's layout,
         # connecting widgets to functions and wizard fields as necessary.
-        self.setTitle('Project file')
+        self.setTitle(self.tr('Project file'))
         layout = QHBoxLayout()
-        layout.addWidget(QLabel('Project file path:'))
+        layout.addWidget(QLabel(self.tr('Project file path:')))
         self.lineEdit = QLineEdit()
         self.registerField('projectFilePath*', self.lineEdit)
         self.lineEdit.textChanged.connect(self.completeChanged)
         layout.addWidget(self.lineEdit)
-        chooser = QPushButton('Choose...')
+        chooser = QPushButton(self.tr('Choose...'))
         chooser.clicked.connect(self.chooseProjectFile)
         layout.addWidget(chooser)
         self.setLayout(layout)
@@ -430,11 +432,11 @@ class NewProjectWizard(QWizard):
         super().__init__(*args, **kwargs)
         
         # The rest of this function sets up the wizard's layout.
-        self.setWindowTitle('New project')
+        self.setWindowTitle(self.tr('New project'))
         self.addPage(SourceDirPage())
         self.addPage(MainSourceFilePage())
         self.compilerPage = CompilerPage(self.project.compilerOptions)
-        self.compilerPage.setTitle('Compiler options')
+        self.compilerPage.setTitle(self.tr('Compiler options'))
         self.addPage(self.compilerPage)
         self.addPage(ProjectFilePage())
     def accept(self):
@@ -463,9 +465,9 @@ class NewProjectWizard(QWizard):
             with open(projectFilePath, 'w', encoding='utf_8') as projectFile:
                 self.project.dump(projectFile)
         except Exception as err:
-            QMessageBox.critical(self, 'Filesystem error',
-            'Informatic encountered an error while writing a new project '
-            'file:\n\n' + str(err))
+            QMessageBox.critical(self, self.tr('Filesystem error'),
+            self.tr('Informatic encountered an error while writing a new '
+            'project file:\n\n' + str(err)))
         else:
             self.parent().displayProjectFile(projectFilePath)
             return super().accept()
@@ -482,7 +484,7 @@ class CompilerOptionsWizard(QWizard):
         """
         self.project = project
         super().__init__(*args, **kwargs)
-        self.setWindowTitle('Compiler options')
+        self.setWindowTitle(self.tr('Compiler options'))
         self.compilerPage = CompilerPage(project.compilerOptions)
         self.addPage(self.compilerPage)
     def accept(self):
@@ -501,8 +503,8 @@ class CompilerOptionsWizard(QWizard):
             as projectFile:
                 self.project.dump(projectFile)
         except Exception as err:
-            QMessageBox.critical(self, 'Filesystem error',
-            'Informatic encountered an error while updating the project '
-            'file:\n\n' + str(err))
+            QMessageBox.critical(self, self.tr('Filesystem error'),
+            self.tr('Informatic encountered an error while updating the '
+            'project file:\n\n') + str(err))
         else:
             return super().accept()
