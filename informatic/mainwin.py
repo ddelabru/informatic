@@ -13,6 +13,7 @@ from .dirtreeview import DirTreeView
 from .sourcectl import SourceCtl
 from .compiler import Compiler
 from .project import Project, NewProjectWizard, CompilerOptionsWizard
+from .rc import *
 from . import version
 
 # This text is used in a few file dialogs.
@@ -368,6 +369,7 @@ class MainWin (QMainWindow):
         super().__init__(parent)
         
         self.setWindowTitle('Informatic')
+        self.setWindowIcon(QIcon(':/informatic.png'))
         
         # The code to create the Main Menu and connect its buttons to
         # appropriate functions begins here.

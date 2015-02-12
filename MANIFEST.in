@@ -1,1 +1,3 @@
-include *.py *.pyw informatic.desktop LICENSE.GPL3
+include *.py *.pyw LICENSE.GPL3
+exclude
+include informatic.desktop informatic/informatic.png

@@ -6,3 +6,4 @@ Exec=informatic
 Name=Informatic
 Categories=Development;IDE
 Type=Application
+Icon=/usr/share/pixmaps/informatic.png

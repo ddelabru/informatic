@@ -34,10 +34,15 @@ setup_options = dict(
         },
     author = 'Dominic Delabruere',
     author_email = 'dominic.delabruere@gmail.com',
-    description = 'Informatic is an IDE for the Inform 6 language.',
+    description = 'IDE for the Inform 6 language',
     license = 'GPL',
-    keywords = 'inform inform6 ide', 
-    classifiers = ['Development Status :: 3 - Alpha',
+    keywords = 'inform inform6 ide',
+    url = 'http://github.com/mrloam/informatic',
+    long_description = 'Informatic is an IDE for the Inform 6 interactive '
+    'fiction development system.\nIt is written in Python 3, using PyQt5 for '
+    'its GUI. Informatic does not come\nwith the Inform 6 compiler or '
+    'libraries. These must be downloaded separately.\n',
+    classifiers = ['Development Status :: 4 - Beta',
     'Environment :: X11 Applications :: Qt',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
@@ -48,12 +53,15 @@ setup_options = dict(
     )
 
 # If the /usr/share/applications directory exists, the Informatic shortcut is
-# copied into it upon installation.
+# copied into it upon installation, and the Informatic icon is copied into the
+# appropriate directory.
 if os.path.isdir('/usr/share/applications'):
     setup_options['data_files'] = [
         ('/usr/share/applications/',
             ['informatic.desktop']
-            )
+            ),
+        ('/usr/share/pixmaps/', 
+            ['informatic/informatic.png'])
         ]
 
 # Test whether PyQt5 and PyQt5.Qsci are installed. They can't be mentioned as
