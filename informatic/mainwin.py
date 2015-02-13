@@ -16,12 +16,6 @@ from .project import Project, NewProjectWizard, CompilerOptionsWizard
 from .rc import *
 from . import version
 
-# This text is used in a few file dialogs.
-source_file_selectors = QCoreApplication.translate(
-  'source_file_selectors', 
-  'Inform 6 source files (*.inf);;'
-  'Inform 6 libraries (*.h)')
-
 # These strings are used when saving and retrieving settings.
 org_name = 'mrloam'
 app_name = 'Informatic'
@@ -43,7 +37,9 @@ class MainWin (QMainWindow):
         Presents the user with a file dialog to choose an existing
         source file, then calls openSourceFile on the chosen filepath.
         """
-        filepath = QFileDialog.getOpenFileName(filter=source_file_selectors)[0]
+        filepath = QFileDialog.getOpenFileName(
+          filter=self.tr('Inform 6 source files (*.inf);;'
+          'Inform 6 libraries (*.h)'))[0]
         if filepath:
             self.openSourceFile(filepath)
     def openSourceFile(self,  filepath):
@@ -145,7 +141,8 @@ class MainWin (QMainWindow):
         source file, then returns the selected filename.
         """
         return QFileDialog.getSaveFileName(
-        filter=source_file_selectors)[0]
+          filter=self.tr('Inform 6 source files (*.inf);;'
+          'Inform 6 libraries (*.h)'))[0]
     def writeSourceFile(self, filepath, sourceCtl):
         """
         Takes two arguments: filepath and sourceCtl, a SourceCtl widget.
@@ -393,7 +390,7 @@ class MainWin (QMainWindow):
         self.saveFileButton.setShortcut(QKeySequence.Save)
         self.saveFileButton.triggered.connect(self.saveCurrentSource)
         
-        self.saveFileAsButton = fileMenu.addAction(self.tr('&Save as...'))
+        self.saveFileAsButton = fileMenu.addAction(self.tr('Save &as...'))
         self.saveFileAsButton.triggered.connect(self.saveCurrentSourceAs)
         self.saveFileAsButton.setShortcut(QKeySequence.SaveAs)
         
@@ -540,6 +537,17 @@ def main():
     """
     app = QApplication(sys.argv)
     app.lastWindowClosed.connect(app.quit)
+    
+    qtTranslator = QTranslator()
+    qtTranslator.load('qt_' + QLocale.system().name(),
+      QLibraryInfo.location(QLibraryInfo.TranslationsPath))
+    app.installTranslator(qtTranslator)
+    
+    informaticTranslator = QTranslator()
+    informaticTranslator.load(
+      ':/informatic_' + QLocale.system().name() + '.qm')
+    app.installTranslator(informaticTranslator)
+    
     main = MainWin()
     main.show()
     app.exec_()
