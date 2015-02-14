@@ -332,14 +332,15 @@ class MainWin (QMainWindow):
         QMessageBox.about(self,
         self.tr('About Informatic'),
         '<h3>Informatic ' + version + '</h3>' +
-        self.tr('<p>Copyright © 2015 Dominic Delabruere '
+        '<p>Copyright © 2015 Dominic Delabruere '
         '&lt;<a href="mailto:dominic.delabruere@gmail.com">'
         'dominic.delabruere@gmail.com</a>&gt;</p>'
-        '<p>Informatic is an Inform 6 IDE written by Dominic Delabruere '
-        'for Python 3 using PyQt5.</p>'
-        '<p>Informatic can be used and distributed under the terms of the GNU '
-        'General Public License, either version 3 of the License, or (at your '
-        'option) any later version.</p>'))
+        '<p>'
+        + self.tr('Informatic is an Inform 6 IDE written by Dominic Delabruere'
+        ' for Python 3 using PyQt5.') + '</p>'
+        '<p>' + self.tr('Informatic can be used and distributed under the '
+        'terms of the GNU General Public License, either version 3 of the '
+        'License, or (at your option) any later version.') + '</p>')
     def showAboutQt(self):
         """
         Launches the "About Qt" informational dialog.
@@ -539,13 +540,13 @@ def main():
     app.lastWindowClosed.connect(app.quit)
     
     qtTranslator = QTranslator()
-    qtTranslator.load('qt_' + QLocale.system().name(),
+    qtTranslator.load('qt_' + QLocale().name(),
       QLibraryInfo.location(QLibraryInfo.TranslationsPath))
     app.installTranslator(qtTranslator)
     
     informaticTranslator = QTranslator()
     informaticTranslator.load(
-      ':/informatic_' + QLocale.system().name() + '.qm')
+      ':/informatic_' + QLocale().name() + '.qm')
     app.installTranslator(informaticTranslator)
     
     main = MainWin()
