@@ -36,6 +36,12 @@ Features scheduled for upcoming release
 Running or installing from source
 ---------------------------------
 
+If you intend to run or install Informatic from source, it is recommended that
+you use a release tarball instead of the source that appears on GitHub. If you
+use the source that appears on GitHub, you will have to compile Qt translation
+files and resource code yourself using lrelease and pyrcc5 before you run or
+install Informatic.
+
 Running or installing Informatic from source requires that you have the
 following dependencies installed first:
 

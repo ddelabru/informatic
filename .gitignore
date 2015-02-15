@@ -58,3 +58,7 @@ target/
 # Eric IDE
 *.e4p
 .eric5project/
+
+# Compiled resources:
+informatic/*.qm
+informatic/rc.py
