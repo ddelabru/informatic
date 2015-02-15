@@ -541,7 +541,7 @@ def main():
     
     # Uncomment and edit the following line to set the locale on application
     # startup. This may be useful for testing translations.
-    QLocale.setDefault(QLocale(QLocale.Spanish))
+    # QLocale.setDefault(QLocale(QLocale.Spanish))
     
     # Use translations for Qt built-in phrases
     qtTranslator = QTranslator()
