@@ -13,8 +13,10 @@ from .dirtreeview import DirTreeView
 from .sourcectl import SourceCtl
 from .compiler import Compiler
 from .project import Project, NewProjectWizard, CompilerOptionsWizard
-from .rc import *
-from . import version
+from . import rc, version
+
+# Once we import the resources module, we don't need it polluting the namespace
+del rc
 
 # These strings are used when saving and retrieving settings.
 org_name = 'mrloam'
