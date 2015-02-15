@@ -539,14 +539,19 @@ def main():
     app = QApplication(sys.argv)
     app.lastWindowClosed.connect(app.quit)
     
+    # Uncomment and edit the following line to set the locale on application
+    # startup. This may be useful for testing translations.
+    QLocale.setDefault(QLocale(QLocale.Spanish))
+    
+    # Use translations for Qt built-in phrases
     qtTranslator = QTranslator()
-    qtTranslator.load('qt_' + QLocale().name(),
-      QLibraryInfo.location(QLibraryInfo.TranslationsPath))
+    qtTranslator.load(QLocale(), 'qt', '_',
+      QLibraryInfo.location(QLibraryInfo.TranslationsPath), '.qm')
     app.installTranslator(qtTranslator)
     
+    # Use translations for Informatic's phrases, if available
     informaticTranslator = QTranslator()
-    informaticTranslator.load(
-      ':/informatic_' + QLocale().name() + '.qm')
+    informaticTranslator.load(QLocale(), 'informatic', '_', ':', '.qm')
     app.installTranslator(informaticTranslator)
     
     main = MainWin()

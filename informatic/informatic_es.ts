@@ -238,7 +238,7 @@
     <message>
         <location filename="informatic/mainwin.py" line="413"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Rehacer</translation>
+        <translation>&amp;Deshacer</translation>
     </message>
     <message>
         <location filename="informatic/mainwin.py" line="417"/>
