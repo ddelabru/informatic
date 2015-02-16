@@ -7,9 +7,6 @@ This script is used for building standalone Windows executables of
 Informatic, bundled with all the application's dependencies. cx_Freeze
 invokes distutils, but for all installation and packaging tasks it is
 recommended that you use the setup.py script instead.
-
-Depending on the cx_Freeze version being used, one may have to copy
-libEGL.dll by hand when building the Windows executable.
 """
 
 import sys
@@ -26,5 +23,6 @@ setup(name='informatic',
     description='Inform 6 IDE',
     options={'build_exe': {'includes': ['atexit', 'PyQt5.QtPrintSupport'],
         'include_msvcr': True}},
+    icon='informatic.ico',
     executables=[Executable('informatic.pyw', base=base)]
     )
