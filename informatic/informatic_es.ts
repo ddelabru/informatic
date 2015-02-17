@@ -4,17 +4,17 @@
 <context>
     <name>CompilerOptionsWizard</name>
     <message>
-        <location filename="informatic/project.py" line="487"/>
+        <location filename="informatic/project.py" line="541"/>
         <source>Compiler options</source>
         <translation>Preferencias del compilador</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="506"/>
+        <location filename="informatic/project.py" line="563"/>
         <source>Filesystem error</source>
         <translation>Error del sistema de archivos</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="506"/>
+        <location filename="informatic/project.py" line="563"/>
         <source>Informatic encountered an error while updating the project file:
 
 </source>
@@ -69,6 +69,91 @@
         <location filename="informatic/project.py" line="315"/>
         <source>Glulx</source>
         <translation>Glulx</translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="330"/>
+        <source>Popular compiler switches:</source>
+        <translation>Modificadores populares del compilador:</translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="333"/>
+        <source>c: more concise error messages</source>
+        <translation>c: mensajes de error más concisos</translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="335"/>
+        <source>d: contract double spaces after full stops in text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="338"/>
+        <source>d2: contract double spaces after exclamation and question marks, too</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="341"/>
+        <source>e: economy mode; use declared abbreviations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="344"/>
+        <source>i: ignore default switches set in source file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="347"/>
+        <source>k: output Infix debugging information to &quot;gameinfo.dbg&quot; (and switch -D on)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="350"/>
+        <source>n: print numbers of properties, attributes and actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="353"/>
+        <source>r: record all the text to &quot;gametext.txt&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="358"/>
+        <source>s: give statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="360"/>
+        <source>u: work out most useful abbreviations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="362"/>
+        <source>w: disable warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="364"/>
+        <source>B: use big memory model (for large V6/V7 files)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="367"/>
+        <source>D: insert &quot;Constant DEBUG;&quot; automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="370"/>
+        <source>H: use Huffman encoding to compress Glulx strings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="373"/>
+        <source>S: compile strict error-checking at run-time (on by default)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="informatic/project.py" line="376"/>
+        <source>X: compile with INFIX debugging facilities present</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -131,207 +216,207 @@
 <context>
     <name>MainWin</name>
     <message>
-        <location filename="informatic/mainwin.py" line="80"/>
+        <location filename="informatic/mainwin.py" line="82"/>
         <source>Untitled</source>
         <translation>Sin nombre</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="88"/>
+        <location filename="informatic/mainwin.py" line="90"/>
         <source>Informatic project files (*.informatic)</source>
         <translation>archivos de proyecto Informatic (*.informatic)</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="203"/>
+        <location filename="informatic/mainwin.py" line="205"/>
         <source>Goto line</source>
         <translation>Ir a una línea</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="203"/>
+        <location filename="informatic/mainwin.py" line="205"/>
         <source>Line number:</source>
         <translation>Número de línea:</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="214"/>
+        <location filename="informatic/mainwin.py" line="216"/>
         <source>Find</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="214"/>
+        <location filename="informatic/mainwin.py" line="216"/>
         <source>Search text:</source>
         <translation>Texto para buscar:</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="235"/>
+        <location filename="informatic/mainwin.py" line="237"/>
         <source>Unsaved source file</source>
         <translation>Archivo no guardado</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="235"/>
+        <location filename="informatic/mainwin.py" line="237"/>
         <source>The source file you are attempting to close has unsaved changes. Close without saving?</source>
         <translation>El archivo de origen que estás tratando de cerrar tiene cambios no guardados. ¿Cerrar sin guardar?</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="285"/>
+        <location filename="informatic/mainwin.py" line="287"/>
         <source>Project file error</source>
         <translation>Error de archivo de proyecto</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="285"/>
+        <location filename="informatic/mainwin.py" line="287"/>
         <source>Informatic encountered an error while opening project file </source>
         <translation>Informatic ha encontrado un error mientras abría el archivo de proyecto </translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="332"/>
+        <location filename="informatic/mainwin.py" line="334"/>
         <source>About Informatic</source>
         <translation>Acerca de Informatic</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="357"/>
+        <location filename="informatic/mainwin.py" line="359"/>
         <source>Unsaved source files</source>
         <translation>Archivos de origen no guardados</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="357"/>
+        <location filename="informatic/mainwin.py" line="359"/>
         <source>You have unsaved source files. Quit anyway?</source>
         <translation>Tienes archivos de origen no guardados. ¿Salir de todos modos?</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="378"/>
+        <location filename="informatic/mainwin.py" line="380"/>
         <source>&amp;File</source>
         <translation>&amp;Archivo</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="380"/>
+        <location filename="informatic/mainwin.py" line="382"/>
         <source>&amp;New</source>
         <translation>&amp;Nuevo</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="466"/>
+        <location filename="informatic/mainwin.py" line="468"/>
         <source>&amp;Open...</source>
         <translation>A&amp;brir...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="390"/>
+        <location filename="informatic/mainwin.py" line="392"/>
         <source>&amp;Save</source>
         <translation>&amp;Guardar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="398"/>
+        <location filename="informatic/mainwin.py" line="400"/>
         <source>Save a&amp;ll</source>
         <translation>Guardar &amp;todos</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="403"/>
+        <location filename="informatic/mainwin.py" line="405"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="407"/>
+        <location filename="informatic/mainwin.py" line="409"/>
         <source>&amp;Quit</source>
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="411"/>
+        <location filename="informatic/mainwin.py" line="413"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="413"/>
+        <location filename="informatic/mainwin.py" line="415"/>
         <source>&amp;Undo</source>
         <translation>&amp;Deshacer</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="417"/>
+        <location filename="informatic/mainwin.py" line="419"/>
         <source>&amp;Redo</source>
         <translation>&amp;Rehacer</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="423"/>
+        <location filename="informatic/mainwin.py" line="425"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Cortar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="427"/>
+        <location filename="informatic/mainwin.py" line="429"/>
         <source>&amp;Copy</source>
         <translation>C&amp;opiar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="431"/>
+        <location filename="informatic/mainwin.py" line="433"/>
         <source>&amp;Paste</source>
         <translation>&amp;Pegar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="437"/>
+        <location filename="informatic/mainwin.py" line="439"/>
         <source>Select &amp;all</source>
         <translation>Seleccionar &amp;todo</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="441"/>
+        <location filename="informatic/mainwin.py" line="443"/>
         <source>&amp;Find...</source>
         <translation>&amp;Buscar...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="445"/>
+        <location filename="informatic/mainwin.py" line="447"/>
         <source>Find &amp;next</source>
         <translation>Buscar &amp;nexto</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="454"/>
+        <location filename="informatic/mainwin.py" line="456"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Ir a una línea...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="461"/>
+        <location filename="informatic/mainwin.py" line="463"/>
         <source>&amp;Project</source>
         <translation>&amp;Proyecto</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="463"/>
+        <location filename="informatic/mainwin.py" line="465"/>
         <source>&amp;New...</source>
         <translation>&amp;Nuevo...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="471"/>
+        <location filename="informatic/mainwin.py" line="473"/>
         <source>Co&amp;mpiler options...</source>
         <translation>&amp;Preferencias del compilador....</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="475"/>
+        <location filename="informatic/mainwin.py" line="477"/>
         <source>&amp;Compile</source>
         <translation>&amp;Compilar</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="479"/>
+        <location filename="informatic/mainwin.py" line="481"/>
         <source>&amp;Help</source>
         <translation>A&amp;yuda</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="481"/>
+        <location filename="informatic/mainwin.py" line="483"/>
         <source>&amp;About Informatic</source>
         <translation>Acerca de &amp;Informatic</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="484"/>
+        <location filename="informatic/mainwin.py" line="486"/>
         <source>About &amp;Qt</source>
         <translation>Acerca de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="394"/>
+        <location filename="informatic/mainwin.py" line="396"/>
         <source>Save &amp;as...</source>
         <translation>Guardar c&amp;omo...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="143"/>
+        <location filename="informatic/mainwin.py" line="145"/>
         <source>Inform 6 source files (*.inf);;Inform 6 libraries (*.h)</source>
         <translation>archivos de origen Inform 6 (*.inf);;bibliotecas Inform 6 (*.h)</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="332"/>
+        <location filename="informatic/mainwin.py" line="334"/>
         <source>Informatic is an Inform 6 IDE written by Dominic Delabruere for Python 3 using PyQt5.</source>
         <translation>Informatic es un IDE para Inform 6 escrito por Dominic Delabruere usando Python 3 y PyQt5.</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="332"/>
+        <location filename="informatic/mainwin.py" line="334"/>
         <source>Informatic can be used and distributed under the terms of the GNU General Public License, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Informatic puede ser usado y distribudo en los términos de la Licencia Pública General de GNU, la versión 3 de la licencia, o (por tu preferencia) cualquier versión posterior.</translation>
     </message>
@@ -339,22 +424,22 @@
 <context>
     <name>NewProjectWizard</name>
     <message>
-        <location filename="informatic/project.py" line="435"/>
+        <location filename="informatic/project.py" line="489"/>
         <source>New project</source>
         <translation>Proyecto nuevo</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="439"/>
+        <location filename="informatic/project.py" line="493"/>
         <source>Compiler options</source>
         <translation>Preferencias del compilador</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="468"/>
+        <location filename="informatic/project.py" line="522"/>
         <source>Filesystem error</source>
         <translation>Error del sistema de archivos</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="468"/>
+        <location filename="informatic/project.py" line="522"/>
         <source>Informatic encountered an error while writing a new project file:
 
 </source>
@@ -366,17 +451,17 @@
 <context>
     <name>ProjectFilePage</name>
     <message>
-        <location filename="informatic/project.py" line="374"/>
+        <location filename="informatic/project.py" line="428"/>
         <source>Project file</source>
         <translation>Archivo de proyecto</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="376"/>
+        <location filename="informatic/project.py" line="430"/>
         <source>Project file path:</source>
         <translation>Ruta del archivo de proyecto:</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="381"/>
+        <location filename="informatic/project.py" line="435"/>
         <source>Choose...</source>
         <translation>Elegir...</translation>
     </message>

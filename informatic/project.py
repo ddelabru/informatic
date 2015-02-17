@@ -16,7 +16,8 @@ class Project(object):
     Represents an Informatic project.
     """
     def __init__(self, mainSourcePath='', sourceDir='', projectFilePath='',
-      compilerOptions={'path': 'inform', 'version': 'v5'}, terpOptions={}):
+      compilerOptions={'path': 'inform', 'version': 'v5', 'switches': ['S']},
+      terpOptions={}):
         """
         Takes five optional keyword arguments representing different
         project options: mainSourcePath, a relative filepath from the
@@ -326,10 +327,76 @@ class CompilerPage(QWizardPage):
           'v6': radio_v6,
           'v8': radio_v8,
           'G': radio_G}
+        
         for key in self.storyFileVersions:
             self.registerField(key, self.storyFileVersions[key])
             if self.compilerOptions.get('version', 'v5') == key:
                 self.storyFileVersions[key].setChecked(True)
+        
+        switchesGroupBox = QGroupBox(self.tr('Popular compiler switches:'))
+        switchesLayout = QHBoxLayout()
+        switchesLeftLayout = QVBoxLayout()
+        check_c = QCheckBox(self.tr('c: more concise error messages'))
+        switchesLeftLayout.addWidget(check_c)
+        check_d = QCheckBox(self.tr('d: contract double spaces after full '
+          'stops in text'))
+        switchesLeftLayout.addWidget(check_d)
+        check_d2 = QCheckBox(self.tr('d2: contract double spaces after '
+          'exclamation and question marks, too'))
+        switchesLeftLayout.addWidget(check_d2)
+        check_e = QCheckBox(self.tr('e: economy mode; use declared '
+          'abbreviations'))
+        switchesLeftLayout.addWidget(check_e)
+        check_i = QCheckBox(self.tr('i: ignore default switches set in source '
+          'file'))
+        switchesLeftLayout.addWidget(check_i)
+        check_k = QCheckBox(self.tr('k: output Infix debugging information to '
+          '"gameinfo.dbg" (and switch -D on)'))
+        switchesLeftLayout.addWidget(check_k)
+        check_n = QCheckBox(self.tr('n: print numbers of properties, '
+          'attributes and actions'))
+        switchesLeftLayout.addWidget(check_n)
+        check_r = QCheckBox(self.tr('r: record all the text to '
+          '"gametext.txt"'))
+        switchesLeftLayout.addWidget(check_r)
+        switchesLayout.addLayout(switchesLeftLayout)
+        switchesRightLayout = QVBoxLayout()
+        check_s = QCheckBox(self.tr('s: give statistics'))
+        switchesRightLayout.addWidget(check_s)
+        check_u = QCheckBox(self.tr('u: work out most useful abbreviations'))
+        switchesRightLayout.addWidget(check_u)
+        check_w = QCheckBox(self.tr('w: disable warning messages'))
+        switchesRightLayout.addWidget(check_w)
+        check_B = QCheckBox(self.tr('B: use big memory model (for large V6/V7 '
+          'files)'))
+        switchesRightLayout.addWidget(check_B)
+        check_D = QCheckBox(self.tr('D: insert "Constant DEBUG;" '
+          'automatically'))
+        switchesRightLayout.addWidget(check_D)
+        check_H = QCheckBox(self.tr('H: use Huffman encoding to compress '
+          'Glulx strings'))
+        switchesRightLayout.addWidget(check_H)
+        check_S = QCheckBox(self.tr('S: compile strict error-checking at '
+          'run-time (on by default)'))
+        switchesRightLayout.addWidget(check_S)
+        check_X = QCheckBox(self.tr('X: compile with INFIX debugging '
+          'facilities present'))
+        switchesRightLayout.addWidget(check_X)
+        switchesLayout.addLayout(switchesRightLayout)
+        switchesGroupBox.setLayout(switchesLayout)
+        mainLayout.addWidget(switchesGroupBox)
+        
+        self.switchesDict = {
+          'c': check_c, 'd': check_d, 'd2': check_d2, 'd': check_d,
+          'e': check_e, 'i': check_i, 'k': check_k, 'n': check_n,
+          'r': check_r, 's': check_s, 'u': check_u, 'w': check_w,
+          'B': check_B, 'D': check_D, 'H': check_H, 'S': check_S,
+          'X': check_X}
+        
+        for key in self.switchesDict:
+            self.registerField(key, self.switchesDict[key])
+            if key in self.compilerOptions.get('switches', ['S']):
+                self.switchesDict[key].setChecked(True)
         
         self.setLayout(mainLayout)
     def chooseCompilerPath(self):
@@ -349,7 +416,7 @@ class CompilerPage(QWizardPage):
             return False
     def storyFileVersion(self):
         """
-        Returns a string reprpesenting the story file version switch
+        Returns a string representing the story file version switch
         that should be passed to the Inform 6 compiler, based on
         user-selected options. Default is 'v5'.
         """
@@ -357,6 +424,17 @@ class CompilerPage(QWizardPage):
             if self.field(key):
                 return key
         return 'v5'
+    def switches(self):
+        """
+        Returns a list of strings representing compiler switches that
+        should be passed to the Inform 6 compiler, based on
+        user-selected options.
+        """
+        switches = []
+        for key in self.switchesDict:
+            if self.field(key):
+                switches += [key]
+        return switches
 
 class ProjectFilePage(QWizardPage):
     """
@@ -461,6 +539,7 @@ class NewProjectWizard(QWizard):
         self.project.compilerOptions = {'path': self.field('compilerPath')}
         self.project.compilerOptions['version'] = \
           self.compilerPage.storyFileVersion()
+        self.project.compilerOptions['switches'] = self.compilerPage.switches()
         try:
             with open(projectFilePath, 'w', encoding='utf_8') as projectFile:
                 self.project.dump(projectFile)
@@ -485,6 +564,9 @@ class CompilerOptionsWizard(QWizard):
         self.project = project
         super().__init__(*args, **kwargs)
         self.setWindowTitle(self.tr('Compiler options'))
+        # In tests, the following line changed the stretch behavior of the
+        # window, so it's commented out for now.
+        # self.setOption(QWizard.NoBackButtonOnLastPage)
         self.compilerPage = CompilerPage(project.compilerOptions)
         self.addPage(self.compilerPage)
     def accept(self):
@@ -494,9 +576,9 @@ class CompilerOptionsWizard(QWizard):
         """
         
         self.project.compilerOptions['path'] = self.field('compilerPath')
-        
         self.project.compilerOptions['version'] = \
           self.compilerPage.storyFileVersion()
+        self.project.compilerOptions['switches'] = self.compilerPage.switches()
         
         try:
             with open(self.project.projectFilePath, 'w', encoding='utf_8') \

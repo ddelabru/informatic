@@ -29,8 +29,9 @@ class Compiler(QThread):
         with a string containing the compiler output as its argument.
         """
         try:
-            informProc = Popen([self.compilerPath, '-' + self.version,
-              self.sourcePath], cwd=self.dir, stdout=PIPE, stderr=PIPE)
+            informProc = Popen([self.compilerPath, self.version] +
+              self.switches + [self.sourcePath], cwd=self.dir, stdout=PIPE,
+              stderr=PIPE)
         except Exception as err:
             results = str(err)
         else:
@@ -46,6 +47,14 @@ class Compiler(QThread):
         """
         super().__init__(*args, **kwargs)
         self.compilerPath = project.compilerOptions.get('path', 'inform')
-        self.version = project.compilerOptions.get('version', 'v5')
+        self.version = '-' + project.compilerOptions.get('version', 'v5')
+        self.switches = ['-' + switch for switch in 
+          project.compilerOptions.get('switches', ['S'])]
+        
+        # To compile without strict error checking, the feature has to be
+        # explicitly disabled.
+        if not ('-S' in self.switches):
+            self.switches += ['-~S']
+        
         self.sourcePath = project.absMainSource()
         self.dir = project.absSourceDir()
