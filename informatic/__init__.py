@@ -8,4 +8,4 @@ The package variable "version" contains the application version number,
 and is used wherever that number is needed.
 """
 
-version = '0.0.2'
+version = '0.0.3'
