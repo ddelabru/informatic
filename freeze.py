@@ -23,6 +23,6 @@ setup(name='informatic',
     description='Inform 6 IDE',
     options={'build_exe': {'includes': ['atexit', 'PyQt5.QtPrintSupport'],
         'include_msvcr': True}},
-    icon='informatic.ico',
-    executables=[Executable('informatic.pyw', base=base)]
+    executables=[Executable('informatic.pyw', base=base,
+      icon='informatic.ico')]
     )
