@@ -148,7 +148,7 @@
     <message>
         <location filename="informatic/project.py" line="373"/>
         <source>S: compile strict error-checking at run-time (on by default)</source>
-        <translation>S: compilar estricta comprobación de errores al tiempo de ejecución (seleccionado por defecto)</translation>
+        <translation>S: compilar estricta comprobación de errores al tiempo de ejecución (prendido por defecto)</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="376"/>
