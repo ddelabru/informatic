@@ -309,6 +309,10 @@ class MainWin (QMainWindow):
             relPath = self.currentProject.mainSourcePath
             absPath = os.path.normpath(os.path.join(projectFileDir, relPath))
             self.openSourceFile(absPath)
+            
+            # Enable project menu buttons
+            self.compilerOptionsButton.setEnabled(True)
+            self.compileButton.setEnabled(True)
     def editCompilerOptions(self):
         """
         Launches a dialog for the user to set Inform 6 compiler options.
@@ -470,13 +474,15 @@ class MainWin (QMainWindow):
         
         projectMenu.addSeparator()
         
-        compilerOptionsButton = projectMenu.addAction(
+        self.compilerOptionsButton = projectMenu.addAction(
           self.tr('Co&mpiler options...'))
-        compilerOptionsButton.triggered.connect(self.editCompilerOptions)
+        self.compilerOptionsButton.triggered.connect(self.editCompilerOptions)
+        self.compilerOptionsButton.setEnabled(False)
         
-        compileButton = projectMenu.addAction(self.tr('&Compile'))
-        compileButton.triggered.connect(self.compileProject)
-        compileButton.setShortcut(Qt.ShiftModifier + Qt.Key_F9)
+        self.compileButton = projectMenu.addAction(self.tr('&Compile'))
+        self.compileButton.triggered.connect(self.compileProject)
+        self.compileButton.setShortcut(Qt.ShiftModifier + Qt.Key_F9)
+        self.compileButton.setEnabled(False)
         
         helpMenu = self.menuBar().addMenu(self.tr('&Help'))
         
