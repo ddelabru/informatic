@@ -4,12 +4,12 @@
 # on Debian systems with certain tools installed.
 
 ts:
-	pylupdate5 informatic.pro
+	pylupdate5 -noobsolete informatic.pro
 
-lrelease:
+qm:
 	lrelease informatic.pro
 
-rc: lrelease
+rc: qm
 	pyrcc5 informatic/rc.qrc > informatic/rc.py
 
 clean:

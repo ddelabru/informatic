@@ -83,77 +83,77 @@
     <message>
         <location filename="informatic/project.py" line="335"/>
         <source>d: contract double spaces after full stops in text</source>
-        <translation type="unfinished"></translation>
+        <translation>d: contraer espacios dobles después de puntos en texto</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="338"/>
         <source>d2: contract double spaces after exclamation and question marks, too</source>
-        <translation type="unfinished"></translation>
+        <translation>d2: también contraer espacios dobles después de signos de exclamación y interrogación</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="341"/>
         <source>e: economy mode; use declared abbreviations</source>
-        <translation type="unfinished"></translation>
+        <translation>e: modo económico; usar abreviacones declaradas</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="344"/>
         <source>i: ignore default switches set in source file</source>
-        <translation type="unfinished"></translation>
+        <translation>i: ignorar modificadores por defecto establecidos en archivo de origen</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="347"/>
         <source>k: output Infix debugging information to &quot;gameinfo.dbg&quot; (and switch -D on)</source>
-        <translation type="unfinished"></translation>
+        <translation>k: imprimir información de depuración en «gameinfo.dbg» (y prender «D»)</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="350"/>
         <source>n: print numbers of properties, attributes and actions</source>
-        <translation type="unfinished"></translation>
+        <translation>n: imprimir números de propiedades, atributos y acciones</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="353"/>
         <source>r: record all the text to &quot;gametext.txt&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>r: registrar todo el texto en «gametext.txt»</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="358"/>
         <source>s: give statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>s: dar estadísticas</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="360"/>
         <source>u: work out most useful abbreviations</source>
-        <translation type="unfinished"></translation>
+        <translation>u: deducir las abeviacones más úteis</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="362"/>
         <source>w: disable warning messages</source>
-        <translation type="unfinished"></translation>
+        <translation>w: desactivar mensajes de advertencia</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="364"/>
         <source>B: use big memory model (for large V6/V7 files)</source>
-        <translation type="unfinished"></translation>
+        <translation>B: usar el modelo de memoria grande (para archivos grandes de versión 6 o 7)</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="367"/>
         <source>D: insert &quot;Constant DEBUG;&quot; automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>D: insertar «Constant DEBUG;» automaticamente</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="370"/>
         <source>H: use Huffman encoding to compress Glulx strings</source>
-        <translation type="unfinished"></translation>
+        <translation>H usar codificación Huffman para comprimir cadenas Glulx</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="373"/>
         <source>S: compile strict error-checking at run-time (on by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>S: compilar estricta comprobación de errores al tiempo de ejecución (seleccionado por defecto)</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="376"/>
         <source>X: compile with INFIX debugging facilities present</source>
-        <translation type="unfinished"></translation>
+        <translation>X: compilar con herramientas de depuración INFIX</translation>
     </message>
 </context>
 <context>
