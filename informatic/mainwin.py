@@ -551,16 +551,26 @@ def main():
     # startup. This may be useful for testing translations.
     # QLocale.setDefault(QLocale(QLocale.Spanish))
     
-    # Use translations for Qt built-in phrases
-    qtTranslator = QTranslator()
-    qtTranslator.load(QLocale(), 'qt', '_',
-      QLibraryInfo.location(QLibraryInfo.TranslationsPath), '.qm')
-    app.installTranslator(qtTranslator)
-    
     # Use translations for Informatic's phrases, if available
     informaticTranslator = QTranslator()
-    informaticTranslator.load(QLocale(), 'informatic', '_', ':', '.qm')
-    app.installTranslator(informaticTranslator)
+    if informaticTranslator.load(QLocale(), 'informatic', '_', ':', '.qm'):
+      app.installTranslator(informaticTranslator)
+    
+    # If there is a directory in the executable path called 'qt_translations',
+    # as there may be for a "frozen" Informatic executable manually bundled
+    # with Qt translations files, we will look for the translations files
+    # there. Otherwise, we will attempt to load them from the standard Qt
+    # translations directory.
+    qtTranslationsDir = os.path.dirname(sys.executable)
+    qtTranslationsDir = os.path.join(qtTranslationsDir, 'qt_translations')
+    if not os.path.isdir(qtTranslationsDir):
+        qtTranslationsDir = QLibraryInfo.location(
+          QLibraryInfo.TranslationsPath)
+    
+    # Use translations for Qt built-in phrases
+    qtTranslator = QTranslator()
+    if qtTranslator.load(QLocale(), 'qt', '_', qtTranslationsDir, '.qm'):
+      app.installTranslator(qtTranslator)
     
     main = MainWin()
     main.show()
