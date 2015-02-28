@@ -2,5 +2,6 @@
 <qresource>
   <file>informatic.png</file>
   <file>informatic_es.qm</file>
+  <file>informatic_fr.qm</file>
 </qresource>
 </RCC>

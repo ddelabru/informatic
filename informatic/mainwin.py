@@ -344,6 +344,7 @@ class MainWin (QMainWindow):
         '<p>'
         + self.tr('Informatic is an Inform 6 IDE written by Dominic Delabruere'
         ' for Python 3 using PyQt5.') + '</p>'
+        '<p>' + self.tr('French translations by Hugo Labrande.') + '</p>'
         '<p>' + self.tr('Informatic can be used and distributed under the '
         'terms of the GNU General Public License, either version 3 of the '
         'License, or (at your option) any later version.') + '</p>')

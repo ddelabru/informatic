@@ -8,4 +8,5 @@ SOURCES      = informatic/__init__.py \
                informatic/mainwin.py \
                informatic/project.py \
                informatic/sourcectl.py
-TRANSLATIONS = informatic/informatic_es.ts
+TRANSLATIONS = informatic/informatic_es.ts \
+               informatic/informatic_fr.ts

@@ -4,7 +4,7 @@
 # on Debian systems with certain tools installed.
 
 ts:
-	pylupdate5 -noobsolete informatic.pro
+	pylupdate5 informatic.pro
 
 qm:
 	lrelease informatic.pro
