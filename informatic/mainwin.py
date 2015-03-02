@@ -290,7 +290,7 @@ class MainWin (QMainWindow):
         else:
             self.currentProject.projectFilePath = projectFilePath
             
-            # Attempt to close all source files already open...
+            # Attempt to close all source files already open...Hugo Labrande.
             index = 0
             while self.tabWidget.count() > index:
                 sourceCtl = self.tabWidget.widget(index)
@@ -344,7 +344,8 @@ class MainWin (QMainWindow):
         '<p>'
         + self.tr('Informatic is an Inform 6 IDE written by Dominic Delabruere'
         ' for Python 3 using PyQt5.') + '</p>'
-        '<p>' + self.tr('French translations by Hugo Labrande.') + '</p>'
+        '<p>' + self.tr('French translation by Hugo Labrande. '
+        'Spanish translation by Fernando Gegoire.') + '</p>'
         '<p>' + self.tr('Informatic can be used and distributed under the '
         'terms of the GNU General Public License, either version 3 of the '
         'License, or (at your option) any later version.') + '</p>')

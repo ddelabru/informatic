@@ -13,13 +13,6 @@
         <translation>Erreur du système de fichiers</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="563"/>
-        <source>Informatic encountered an error while updating the project file:
-</source>
-        <translation type="obsolete">Informatic a rencontré une erreur en mettant à jour le fichier de projet :
-</translation>
-    </message>
-    <message>
         <location filename="informatic/project.py" line="588"/>
         <source>Informatic encountered an error while updating the project file:
 
@@ -210,13 +203,6 @@
         <translation>Erreur du système de fichiers</translation>
     </message>
     <message>
-        <location filename="informatic/project.py" line="260"/>
-        <source>Informatic encountered an error while creating a new source file:
-</source>
-        <translation type="obsolete">Informatic a rencontré une erreur en créant un nouveau fichier source :
-</translation>
-    </message>
-    <message>
         <location filename="informatic/project.py" line="261"/>
         <source>Informatic encountered an error while creating a new source file:
 
@@ -284,137 +270,137 @@
         <translation>À propos d&apos;Informatic</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="364"/>
+        <location filename="informatic/mainwin.py" line="365"/>
         <source>Unsaved source files</source>
         <translation>Fichiers source non sauvegardés</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="364"/>
+        <location filename="informatic/mainwin.py" line="365"/>
         <source>You have unsaved source files. Quit anyway?</source>
         <translation>Certains fichiers ne sont pas sauvegardés. Quitter quand même ?</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="385"/>
+        <location filename="informatic/mainwin.py" line="386"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="387"/>
+        <location filename="informatic/mainwin.py" line="388"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="473"/>
+        <location filename="informatic/mainwin.py" line="474"/>
         <source>&amp;Open...</source>
         <translation>&amp;Ouvrir...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="397"/>
+        <location filename="informatic/mainwin.py" line="398"/>
         <source>&amp;Save</source>
         <translation>&amp;Entregistrer</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="405"/>
+        <location filename="informatic/mainwin.py" line="406"/>
         <source>Save a&amp;ll</source>
         <translation>Enregistrer &amp;tout</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="410"/>
+        <location filename="informatic/mainwin.py" line="411"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="414"/>
+        <location filename="informatic/mainwin.py" line="415"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="418"/>
+        <location filename="informatic/mainwin.py" line="419"/>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="420"/>
+        <location filename="informatic/mainwin.py" line="421"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="424"/>
+        <location filename="informatic/mainwin.py" line="425"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="430"/>
+        <location filename="informatic/mainwin.py" line="431"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Couper</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="434"/>
+        <location filename="informatic/mainwin.py" line="435"/>
         <source>&amp;Copy</source>
         <translation>Co&amp;pier</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="438"/>
+        <location filename="informatic/mainwin.py" line="439"/>
         <source>&amp;Paste</source>
         <translation>Co&amp;ller</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="444"/>
+        <location filename="informatic/mainwin.py" line="445"/>
         <source>Select &amp;all</source>
         <translation>Sélectionner &amp;tout</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="448"/>
+        <location filename="informatic/mainwin.py" line="449"/>
         <source>&amp;Find...</source>
         <translation>&amp;Rechercher...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="452"/>
+        <location filename="informatic/mainwin.py" line="453"/>
         <source>Find &amp;next</source>
         <translation>Trouver &amp;suivant</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="461"/>
+        <location filename="informatic/mainwin.py" line="462"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Aller à la ligne...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="468"/>
+        <location filename="informatic/mainwin.py" line="469"/>
         <source>&amp;Project</source>
         <translation>&amp;Projet</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="470"/>
+        <location filename="informatic/mainwin.py" line="471"/>
         <source>&amp;New...</source>
         <translation>&amp;Nouveau...</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="478"/>
+        <location filename="informatic/mainwin.py" line="479"/>
         <source>Co&amp;mpiler options...</source>
         <translation>&amp;Préférences du compilateur....</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="483"/>
+        <location filename="informatic/mainwin.py" line="484"/>
         <source>&amp;Compile</source>
         <translation>&amp;Compiler</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="488"/>
+        <location filename="informatic/mainwin.py" line="489"/>
         <source>&amp;Help</source>
         <translation>A&amp;ide</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="490"/>
+        <location filename="informatic/mainwin.py" line="491"/>
         <source>&amp;About Informatic</source>
         <translation>À propos de &amp;Informatic</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="493"/>
+        <location filename="informatic/mainwin.py" line="494"/>
         <source>About &amp;Qt</source>
         <translation>À propos de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="informatic/mainwin.py" line="401"/>
+        <location filename="informatic/mainwin.py" line="402"/>
         <source>Save &amp;as...</source>
         <translation>Enregistrer &amp;sous...</translation>
     </message>
@@ -435,8 +421,8 @@
     </message>
     <message>
         <location filename="informatic/mainwin.py" line="338"/>
-        <source>French translations by Hugo Labrande.</source>
-        <translation>Traduction française par Hugo Labrande.</translation>
+        <source>French translation by Hugo Labrande. Spanish translation by Fernando Gegoire.</source>
+        <translation>Traduction française par Hugo Labrande. Traduction espagnole par Fernando Gregoire.</translation>
     </message>
 </context>
 <context>
@@ -455,13 +441,6 @@
         <location filename="informatic/project.py" line="547"/>
         <source>Filesystem error</source>
         <translation>Erreur du système de fichiers</translation>
-    </message>
-    <message>
-        <location filename="informatic/project.py" line="522"/>
-        <source>Informatic encountered an error while writing a new project file:
-</source>
-        <translation type="obsolete">Informatic a rencontré une erreur en écrivant le fichier de projet :
-</translation>
     </message>
     <message>
         <location filename="informatic/project.py" line="547"/>
