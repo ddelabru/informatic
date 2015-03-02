@@ -6,7 +6,7 @@ It is written in Python 3, using PyQt5 for its GUI.
 
 Informatic is Copyright (C) 2015 Dominic Delabruere
 
-French translations provided by Hugo Labrande.
+French translation by Hugo Labrande. Spanish translation by Fernando Gregoire.
 
 Informatic can be used and distributed under the terms of the GNU General
 Public License, either version 3 of the License, or (at your option) any later
