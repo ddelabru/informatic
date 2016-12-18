@@ -57,6 +57,8 @@ target/
 
 # Eric IDE
 *.e4p
+*.e4q
+*.e4t
 .eric5project/
 
 # Compiled resources:

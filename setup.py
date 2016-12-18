@@ -27,6 +27,7 @@ setup_options = dict(
     name = 'informatic',
     version = version,
     packages = find_packages(),
+    install_requires = ['PyQt5',  'QScintilla'],
     entry_points = {
         'gui_scripts': [
             'informatic = informatic.mainwin:main'
@@ -64,28 +65,4 @@ if os.path.isdir('/usr/share/applications'):
             ['informatic/informatic.png'])
         ]
 
-# Test whether PyQt5 and PyQt5.Qsci are installed. They can't be mentioned as
-# requirements in the setup() parameters because setuptools can't install them.
-qsciImported = False
-try:
-    import PyQt5.QtWidgets
-    widgetsImported = True
-    del PyQt5.QtWidgets
-except:
-    widgetsImported = False
-    print('Python failed to import from PyQt5. Make sure PyQt5 is installed.')
-
-try:
-    import PyQt5.Qsci
-    qsciImported = True
-    del PyQt5.Qsci
-except:
-    qsciImported = False
-    print('Python failed to import the Qscintilla plugin for PyQt5 '
-    '(PyQt5.Qsci).\nMake sure it is installed.')
-
-# The script will not run setup() unless PyQt5 and PyQt5.Qsci are present
-if widgetsImported and qsciImported:
-    setup(**setup_options)
-else:
-    print('Missing dependencies; aborting...')
+setup(**setup_options)

@@ -24,7 +24,7 @@ class DirTreeView(QTreeView):
         # Invoke the QTreeView constructor
         super().__init__(parent)
         
-        self.setSizePolicy(QSizePolicy(QSizePolicy.Preferred))
+        self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         
         # The widget's contents are based on a file system model
         self.dirTree = QFileSystemModel()
