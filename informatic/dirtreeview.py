@@ -5,8 +5,8 @@
 The dirtreeview module contains the DirTreeView class.
 """
 
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QTreeView, QSizePolicy, QFileSystemModel
 
 class DirTreeView(QTreeView):
     """

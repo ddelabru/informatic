@@ -7,8 +7,8 @@ The sourcectl module contains the SourceCtl widget for editing Inform 6
 source files and associated code.
 """
 
-from PyQt5.QtGui import *
-from PyQt5.Qsci import *
+from PyQt5.QtGui import QColor, QFont
+from PyQt5.Qsci import QsciLexerCustom, QsciScintilla
 import os.path
 
 # These lists may come in handy when the lexer can handle more styles.
@@ -191,4 +191,3 @@ class SourceCtl (QsciScintilla):
             currentName = tabWidget.tabText(tabIndex)
             tabWidget.setTabText(tabIndex, '*' + currentName)
         self.saved = False
-

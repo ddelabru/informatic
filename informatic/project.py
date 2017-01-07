@@ -9,7 +9,9 @@ projects.
 
 import os.path
 import json
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWizardPage, QHBoxLayout, QLabel, QLineEdit
+from PyQt5.QtWidgets import QPushButton, QFileDialog, QVBoxLayout, QRadioButton
+from PyQt5.QtWidgets import QWidget, QMessageBox, QGroupBox, QCheckBox, QWizard
 
 class Project(object):
     """

@@ -7,7 +7,7 @@ ts:
 	pylupdate5 informatic.pro
 
 qm:
-	lrelease informatic.pro
+	qtchooser -run-tool=lrelease -qt=5 informatic.pro
 
 rc: qm
 	pyrcc5 informatic/rc.qrc > informatic/rc.py

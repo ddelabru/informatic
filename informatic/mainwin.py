@@ -5,9 +5,11 @@
 import os
 import sys
 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt, QTranslator, QSettings, QLocale, QSize
+from PyQt5.QtCore import QLibraryInfo
+from PyQt5.QtGui import QIcon, QKeySequence, QFont
+from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication, QTabWidget
+from PyQt5.QtWidgets import QTextEdit, QSplitter, QMessageBox, QInputDialog
 
 from .dirtreeview import DirTreeView
 from .sourcectl import SourceCtl
@@ -576,4 +578,4 @@ def main():
     
     main = MainWin()
     main.show()
-    app.exec_()
+    sys.exit(app.exec_())
