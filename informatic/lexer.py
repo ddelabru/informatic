@@ -27,6 +27,12 @@ class InformLexer(QsciLexerCustom):
             5: 'Directive'}
         for index in self._styles:
             setattr(self, self._styles[index], index)
+        
+        self.directives = [b'box', b'break', b'continue', b'do', b'font',
+          b'for', b'give', b'if', b'inversion', b'jump', b'move', b'new_line',
+          b'objectloop', b'print', b'print_ret', b'quit',  b'read', b'remove',
+          b'restore', b'return', b'rfalse', b'rtrue', b'save', b'spaces',
+          b'string', b'style', b'switch', b'while']
     
     def description(self, style):
         """
@@ -100,7 +106,7 @@ class InformLexer(QsciLexerCustom):
             if (source[pos] == ord(b'!')) and (currentStyle != self.String):
                 currentStyle = self.Comment
                 nextStyle = self.Comment
-            elif (source[pos] == ord(b'\n')) and (currentStyle == self.Comment):
+            elif (source[pos] == ord(b'\n')) and (currentStyle != self.String):
                 currentStyle = self.Default
                 nextStyle = self.Default
             elif (source[pos] == ord(b'"')) and (currentStyle != self.Comment):
@@ -109,4 +115,20 @@ class InformLexer(QsciLexerCustom):
                 else:
                     currentStyle = self.String
                     nextStyle = self.String
+            elif source[pos] == ord(b'\''):
+                if currentStyle == self.Default:
+                    currentStyle = self.DictWord
+                    nextStyle = self.DictWord
+                elif currentStyle == self.DictWord:
+                    nextStyle = self.Default
+            elif chr(source[pos]).isspace():
+                if currentStyle == self.Directive:
+                    currentStyle = self.Default
+                    nextStyle = self.Default
+            elif pos == 0 or chr(source[pos - 1]).isspace():
+                if currentStyle == self.Default:
+                    currentWord = source[pos:].split(None, 1)[0]
+                    if currentWord in self.directives:
+                        currentStyle = self.Directive
+                        nextStyle = self.Directive
             self.setStyling(1, currentStyle)
