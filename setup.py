@@ -27,7 +27,7 @@ setup_options = dict(
     name = 'informatic',
     version = version,
     packages = find_packages(),
-    install_requires = ['PyQt5',  'QScintilla'],
+    install_requires = ['PyQt5', 'QScintilla'],
     entry_points = {
         'gui_scripts': [
             'informatic = informatic.mainwin:main'
