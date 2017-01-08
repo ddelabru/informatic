@@ -28,11 +28,18 @@ class InformLexer(QsciLexerCustom):
         for index in self._styles:
             setattr(self, self._styles[index], index)
         
-        self.directives = [b'box', b'break', b'continue', b'do', b'font',
+        self.statements = [b'box', b'break', b'continue', b'do', b'font',
           b'for', b'give', b'if', b'inversion', b'jump', b'move', b'new_line',
           b'objectloop', b'print', b'print_ret', b'quit',  b'read', b'remove',
           b'restore', b'return', b'rfalse', b'rtrue', b'save', b'spaces',
           b'string', b'style', b'switch', b'while']
+        
+        self.directives = [b'Abbreviate', b'Array', b'Attribute', b'Class',
+          b'Constant', b'Default', b'End', b'Endif', b'Extend', b'Global',
+          b'Ifdef', b'Ifndef', b'Ifnot',  b'Iftrue', b'Iffalse', b'Import',
+          b'Include', b'Link', b'Lowstring', b'Message', b'Object', 
+          b'Property', b'Release', b'Replace', b'Serial', b'Switches',
+          b'Statusline', b'System_file', b'Verb', b'Zcharacter']
     
     def description(self, style):
         """
@@ -121,14 +128,18 @@ class InformLexer(QsciLexerCustom):
                     nextStyle = self.DictWord
                 elif currentStyle == self.DictWord:
                     nextStyle = self.Default
-            elif chr(source[pos]).isspace():
-                if currentStyle == self.Directive:
+            elif not chr(source[pos]).isalpha():
+                if currentStyle in (self.Directive, self.Statement):
                     currentStyle = self.Default
                     nextStyle = self.Default
             elif pos == 0 or chr(source[pos - 1]).isspace():
                 if currentStyle == self.Default:
-                    currentWord = source[pos:].split(None, 1)[0]
-                    if currentWord in self.directives:
+                    currentWord = source[pos:].split(None, 1)[0].split(
+                      b';', 1)[0]
+                    if currentWord in self.statements:
+                        currentStyle = self.Statement
+                        nextStyle = self.Statement
+                    elif currentWord in self.directives:
                         currentStyle = self.Directive
                         nextStyle = self.Directive
             self.setStyling(1, currentStyle)
