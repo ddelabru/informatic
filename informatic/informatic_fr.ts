@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="fr" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="fr" sourcelanguage="en">
 <context>
     <name>CompilerOptionsWizard</name>
     <message>
@@ -352,7 +353,7 @@
     <message>
         <location filename="informatic/mainwin.py" line="449"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Rechercher...</translation>
+        <translation type="unfinished">R&amp;echercher...</translation>
     </message>
     <message>
         <location filename="informatic/mainwin.py" line="453"/>
