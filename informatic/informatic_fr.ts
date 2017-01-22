@@ -353,7 +353,7 @@
     <message>
         <location filename="informatic/mainwin.py" line="449"/>
         <source>&amp;Find...</source>
-        <translation type="unfinished">R&amp;echercher...</translation>
+        <translation>R&amp;echercher...</translation>
     </message>
     <message>
         <location filename="informatic/mainwin.py" line="453"/>
