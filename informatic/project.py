@@ -19,7 +19,7 @@ class Project(object):
     """
     def __init__(self, mainSourcePath='', sourceDir='', projectFilePath='',
       compilerOptions={'path': 'inform', 'version': 'v5', 'switches': ['S']},
-      terpOptions={}):
+      terpOptions={'terpPath': 'sfrotz', 'storyFile': ''}):
         """
         Takes five optional keyword arguments representing different
         project options: mainSourcePath, a relative filepath from the
@@ -83,6 +83,8 @@ class Project(object):
         for attr in ['compilerOptions', 'terpOptions']:
             if attr in attrDict:
                 setattr(self, attr, attrDict[attr])
+            else:
+                setattr(self, attr, {})
 
 class SourceDirPage(QWizardPage):
     """

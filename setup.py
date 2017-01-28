@@ -50,6 +50,7 @@ setup_options = dict(
     'Natural Language :: English',
     'Operating System :: OS Independent',
     'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3 :: 3.5',
     'Topic :: Text Editors :: Integrated Development Environments (IDE)']
     )
 

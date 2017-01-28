@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# Copyright (c) 2015 Dominic Delabruere
+# Copyright (c) 2015-2017 Dominic Delabruere
 
 """
 The compiler module contains code for interfacing with the Inform 6
 compiler.
 """
 
-from PyQt5.QtCore import *
+from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
 from subprocess import Popen, PIPE
 
 from .project import Project

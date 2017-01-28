@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# Copyright (c) 2015 Dominic Delabruere
+# Copyright (c) 2015-2017 Dominic Delabruere
 
 import os
 import sys
@@ -15,6 +15,7 @@ from .dirtreeview import DirTreeView
 from .sourcectl import SourceCtl
 from .compiler import Compiler
 from .project import Project, NewProjectWizard, CompilerOptionsWizard
+from .interpreter import TerpDialog
 from . import rc, version
 
 # Once we import the resources module, we don't need it polluting the namespace
@@ -268,7 +269,7 @@ class MainWin (QMainWindow):
         project.
         """
         project = Project()
-        NewProjectWizard(parent = self, project = project).show()
+        NewProjectWizard(parent = self, project = project).exec()
     def displayProjectFile(self, projectFilePath):
         """
         Takes one argument, projectFilePath, a path to an Informatic
@@ -315,11 +316,12 @@ class MainWin (QMainWindow):
             # Enable project menu buttons
             self.compilerOptionsButton.setEnabled(True)
             self.compileButton.setEnabled(True)
+            self.runButton.setEnabled(True)
     def editCompilerOptions(self):
         """
         Launches a dialog for the user to set Inform 6 compiler options.
         """
-        CompilerOptionsWizard(self.currentProject, parent=self).show()
+        CompilerOptionsWizard(self.currentProject, parent=self).exec()
     def compileProject(self):
         """
         Calls saveAllSources, then spawns a new thread to run the Inform
@@ -333,6 +335,8 @@ class MainWin (QMainWindow):
         compiler.start()
     def showCompilerOutput(self, results):
         self.compilerEdit.setText(results)
+    def showTerpDialog(self):
+        TerpDialog(self).show()
     def showAbout(self):
         """
         Launches the "About" dialog with information about Informatic.
@@ -487,6 +491,11 @@ class MainWin (QMainWindow):
         self.compileButton.triggered.connect(self.compileProject)
         self.compileButton.setShortcut(Qt.ShiftModifier + Qt.Key_F9)
         self.compileButton.setEnabled(False)
+        
+        self.runButton = projectMenu.addAction(self.tr('&Run...'))
+        self.runButton.triggered.connect(self.showTerpDialog)
+        self.runButton.setShortcut(Qt.ShiftModifier + Qt.Key_F5)
+        self.runButton.setEnabled(False)
         
         helpMenu = self.menuBar().addMenu(self.tr('&Help'))
         
