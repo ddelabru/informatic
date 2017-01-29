@@ -252,9 +252,9 @@ class MainSourceFilePage(QWizardPage):
         if self.newFileButton.isChecked():
             if os.path.exists(self.newFileLineEdit.text()):
                 overwriteResponse = QMessageBox.question(self,
-                self.tr('File overwrite'),
-                self.tr('A file already exists at the filepath you have given.'
-                ' Is it okay to overwrite this with a blank file?'))
+                  self.tr('File overwrite'),
+                  self.tr('A file already exists at the filepath you have '
+                  'given. Is it okay to overwrite this with a blank file?'))
                 if overwriteResponse != QMessageBox.Yes:
                     return False
             try:
