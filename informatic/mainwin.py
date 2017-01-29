@@ -344,7 +344,7 @@ class MainWin (QMainWindow):
         QMessageBox.about(self,
         self.tr('About Informatic'),
         '<h3>Informatic ' + version + '</h3>' +
-        '<p>Copyright © 2015 Dominic Delabruere '
+        '<p>Copyright © 2015-2017 Dominic Delabruere '
         '&lt;<a href="mailto:dominic.delabruere@gmail.com">'
         'dominic.delabruere@gmail.com</a>&gt;</p>'
         '<p>'
@@ -562,7 +562,7 @@ def main():
     
     # Uncomment and edit the following line to set the locale on application
     # startup. This may be useful for testing translations.
-    # QLocale.setDefault(QLocale(QLocale.Spanish))
+    QLocale.setDefault(QLocale(QLocale.French))
     
     # Use translations for Informatic's phrases, if available
     informaticTranslator = QTranslator()
