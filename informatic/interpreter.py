@@ -70,7 +70,10 @@ class TerpDialog(QDialog):
     def chooseStoryFile(self):
         sourceDir = self.parent().currentProject.absSourceDir()
         storyFile = QFileDialog.getOpenFileName(self,
-          self.tr('Choose story file'),  sourceDir, '')[0]
+          self.tr('Choose story file'),  sourceDir,
+          self.tr('Z-code story files (*.z[1-8] *.zblorb);;'
+            'Glulx story files (*.ulx *.blb *.gblorb);;'
+            'All files (*)'))[0]
         
         if storyFile:
             self.storyFileEdit.setText(storyFile)
