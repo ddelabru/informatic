@@ -562,7 +562,7 @@ def main():
     
     # Uncomment and edit the following line to set the locale on application
     # startup. This may be useful for testing translations.
-    QLocale.setDefault(QLocale(QLocale.French))
+    # QLocale.setDefault(QLocale(QLocale.Spanish))
     
     # Use translations for Informatic's phrases, if available
     informaticTranslator = QTranslator()
