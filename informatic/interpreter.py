@@ -91,7 +91,7 @@ class TerpDialog(QDialog):
         except Exception as err:
             QMessageBox.critical(self.parent(),
               self.tr('Project file error'), 
-              self.tr('Informatic encountered an error while saving the'
+              self.tr('Informatic encountered an error while saving the '
                 'project file:\n\n') + str(err))
         
         try:
