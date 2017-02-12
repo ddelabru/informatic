@@ -4,6 +4,7 @@
 
 import os
 import sys
+import argparse
 
 from PyQt5.QtCore import Qt, QTranslator, QSettings, QLocale, QSize
 from PyQt5.QtCore import QLibraryInfo
@@ -378,6 +379,13 @@ class MainWin (QMainWindow):
         settings.setValue('projectFilePath',
         self.currentProject.projectFilePath)
         return event.accept()
+    def parseArguments(self):
+        parser = argparse.ArgumentParser()
+        parser.add_argument('project',
+          help=self.tr('project file path'), nargs='?', default='')
+        args = parser.parse_args()
+        if args.project:
+            self.displayProjectFile(args.project)
     def __init__(self, parent=None):
         """
         Passes the argument parent to the QMainWindow constructor.
@@ -587,4 +595,5 @@ def main():
     
     main = MainWin()
     main.show()
+    main.parseArguments()
     sys.exit(app.exec_())

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="es" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="es" sourcelanguage="en">
 <context>
     <name>CompilerOptionsWizard</name>
     <message>
@@ -215,219 +216,224 @@
 <context>
     <name>MainWin</name>
     <message>
-        <location filename="mainwin.py" line="85"/>
+        <location filename="mainwin.py" line="86"/>
         <source>Untitled</source>
         <translation>Sin título</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="93"/>
+        <location filename="mainwin.py" line="94"/>
         <source>Informatic project files (*.informatic)</source>
         <translation>archivos de proyecto de Informatic (*.informatic)</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="208"/>
+        <location filename="mainwin.py" line="209"/>
         <source>Goto line</source>
         <translation>Ir a una línea</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="208"/>
+        <location filename="mainwin.py" line="209"/>
         <source>Line number:</source>
         <translation>Número de línea:</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="219"/>
+        <location filename="mainwin.py" line="220"/>
         <source>Find</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="219"/>
+        <location filename="mainwin.py" line="220"/>
         <source>Search text:</source>
         <translation>Texto a buscar:</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="240"/>
+        <location filename="mainwin.py" line="241"/>
         <source>Unsaved source file</source>
         <translation>Archivo fuente no guardado</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="240"/>
+        <location filename="mainwin.py" line="241"/>
         <source>The source file you are attempting to close has unsaved changes. Close without saving?</source>
         <translation>El archivo fuente que intentas cerrar tiene cambios no guardados. ¿Cerrar sin guardarlos?</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="290"/>
+        <location filename="mainwin.py" line="291"/>
         <source>Project file error</source>
         <translation>Error en archivo de proyecto</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="290"/>
+        <location filename="mainwin.py" line="291"/>
         <source>Informatic encountered an error while opening project file </source>
         <translation>Informatic ha encontrado un error mientras abría el archivo de proyecto </translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="344"/>
+        <location filename="mainwin.py" line="345"/>
         <source>About Informatic</source>
         <translation>Acerca de Informatic</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="371"/>
+        <location filename="mainwin.py" line="372"/>
         <source>Unsaved source files</source>
         <translation>Archivos fuente no guardados</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="371"/>
+        <location filename="mainwin.py" line="372"/>
         <source>You have unsaved source files. Quit anyway?</source>
         <translation>Tienes archivos fuente no guardados. ¿Salir de todos modos?</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="392"/>
+        <location filename="mainwin.py" line="400"/>
         <source>&amp;File</source>
         <translation>&amp;Archivo</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="394"/>
+        <location filename="mainwin.py" line="402"/>
         <source>&amp;New</source>
         <translation>&amp;Nuevo</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="480"/>
+        <location filename="mainwin.py" line="488"/>
         <source>&amp;Open...</source>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="404"/>
+        <location filename="mainwin.py" line="412"/>
         <source>&amp;Save</source>
         <translation>&amp;Guardar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="412"/>
+        <location filename="mainwin.py" line="420"/>
         <source>Save a&amp;ll</source>
         <translation>Guardar &amp;todos</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="417"/>
+        <location filename="mainwin.py" line="425"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="421"/>
+        <location filename="mainwin.py" line="429"/>
         <source>&amp;Quit</source>
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="425"/>
+        <location filename="mainwin.py" line="433"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="427"/>
+        <location filename="mainwin.py" line="435"/>
         <source>&amp;Undo</source>
         <translation>&amp;Deshacer</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="431"/>
+        <location filename="mainwin.py" line="439"/>
         <source>&amp;Redo</source>
         <translation>&amp;Rehacer</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="437"/>
+        <location filename="mainwin.py" line="445"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Cortar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="441"/>
+        <location filename="mainwin.py" line="449"/>
         <source>&amp;Copy</source>
         <translation>C&amp;opiar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="445"/>
+        <location filename="mainwin.py" line="453"/>
         <source>&amp;Paste</source>
         <translation>&amp;Pegar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="451"/>
+        <location filename="mainwin.py" line="459"/>
         <source>Select &amp;all</source>
         <translation>Seleccionar &amp;todo</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="455"/>
+        <location filename="mainwin.py" line="463"/>
         <source>&amp;Find...</source>
         <translation>&amp;Buscar...</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="459"/>
+        <location filename="mainwin.py" line="467"/>
         <source>Find &amp;next</source>
         <translation>Buscar &amp;siguiente</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="468"/>
+        <location filename="mainwin.py" line="476"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Ir a una línea...</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="475"/>
+        <location filename="mainwin.py" line="483"/>
         <source>&amp;Project</source>
         <translation>&amp;Proyecto</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="477"/>
+        <location filename="mainwin.py" line="485"/>
         <source>&amp;New...</source>
         <translation>&amp;Nuevo...</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="485"/>
+        <location filename="mainwin.py" line="493"/>
         <source>Co&amp;mpiler options...</source>
         <translation>&amp;Opciones del compilador....</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="490"/>
+        <location filename="mainwin.py" line="498"/>
         <source>&amp;Compile</source>
         <translation>&amp;Compilar</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="500"/>
+        <location filename="mainwin.py" line="508"/>
         <source>&amp;Help</source>
         <translation>A&amp;yuda</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="502"/>
+        <location filename="mainwin.py" line="510"/>
         <source>&amp;About Informatic</source>
         <translation>Acerca de &amp;Informatic</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="505"/>
+        <location filename="mainwin.py" line="513"/>
         <source>About &amp;Qt</source>
         <translation>Acerca de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="408"/>
+        <location filename="mainwin.py" line="416"/>
         <source>Save &amp;as...</source>
         <translation>G&amp;uardar como...</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="148"/>
+        <location filename="mainwin.py" line="149"/>
         <source>Inform 6 source files (*.inf);;Inform 6 libraries (*.h)</source>
         <translation>archivos de código fuente en Inform 6 (*.inf);;librerías para Inform 6 (*.h)</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="344"/>
+        <location filename="mainwin.py" line="345"/>
         <source>Informatic is an Inform 6 IDE written by Dominic Delabruere for Python 3 using PyQt5.</source>
         <translation>Informatic es un IDE para Inform 6 escrito por Dominic Delabruere usando Python 3 y PyQt5.</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="344"/>
+        <location filename="mainwin.py" line="345"/>
         <source>Informatic can be used and distributed under the terms of the GNU General Public License, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Informatic puede usarse y distribuirse bajo los términos de la Licencia Pública General de GNU, ya sea la versión 3 de la licencia, o (a discreción tuya) cualquier versión posterior.</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="344"/>
+        <location filename="mainwin.py" line="345"/>
         <source>French translation by Hugo Labrande. Spanish translation by Fernando Gegoire.</source>
         <translation>Traducción al francés por Hugo Labrande. Traducción al español por Fernando Gregoire.</translation>
     </message>
     <message>
-        <location filename="mainwin.py" line="495"/>
+        <location filename="mainwin.py" line="503"/>
         <source>&amp;Run...</source>
         <translation>&amp;Ejecutar...</translation>
+    </message>
+    <message>
+        <location filename="mainwin.py" line="384"/>
+        <source>project file path</source>
+        <translation>ruta del archivo de proyecto</translation>
     </message>
 </context>
 <context>
