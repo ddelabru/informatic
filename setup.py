@@ -27,7 +27,6 @@ setup_options = dict(
     name = 'informatic',
     version = version,
     packages = find_packages(),
-    install_requires = ['PyQt5', 'QScintilla'],
     entry_points = {
         'gui_scripts': [
             'informatic = informatic.mainwin:main'
@@ -65,5 +64,11 @@ if os.path.isdir('/usr/share/applications'):
         ('/usr/share/pixmaps/', 
             ['informatic/informatic.png'])
         ]
+
+try:
+    import PyQt5
+    import PyQt5.QScintilla
+except:
+    setup_options['install_requires'] = ['PyQt5', 'QScintilla']
 
 setup(**setup_options)
