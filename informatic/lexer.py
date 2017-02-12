@@ -24,7 +24,8 @@ class InformLexer(QsciLexerCustom):
             2: 'DictWord',
             3: 'String',
             4: 'Statement',
-            5: 'Directive'}
+            5: 'Directive',
+            6: 'Operator'}
         for index in self._styles:
             setattr(self, self._styles[index], index)
         
@@ -40,6 +41,9 @@ class InformLexer(QsciLexerCustom):
           b'Include', b'Link', b'Lowstring', b'Message', b'Object', 
           b'Property', b'Release', b'Replace', b'Serial', b'Switches',
           b'Statusline', b'System_file', b'Verb', b'Zcharacter']
+        
+        self.operatorWords = [b'has', b'hasnt',  b'in', b'notin', b'ofclass',
+          b'provides']
     
     def description(self, style):
         """
@@ -64,7 +68,8 @@ class InformLexer(QsciLexerCustom):
             self.DictWord: '#FF5000',
             self.String: '#00C000',
             self.Statement: '#0000FF',
-            self.Directive: '#FF00FF'}
+            self.Directive: '#FF00FF',
+            self.Operator: '#000000'}
         if style in colors:
             return QColor(colors[style])
         else:
@@ -81,8 +86,7 @@ class InformLexer(QsciLexerCustom):
         font.setPointSize(10)
         if style == self.Comment:
             font.setItalic(True)
-            font.setBold(True)
-        if not (style in [self.Default, self.Comment]):
+        if style != self.Default:
             font.setBold(True)
         return font
     def styleText(self, start, end):
@@ -129,8 +133,14 @@ class InformLexer(QsciLexerCustom):
                 elif currentStyle == self.DictWord:
                     nextStyle = self.Default
             elif not chr(source[pos]).isalpha():
-                if currentStyle in (self.Directive, self.Statement):
+                if currentStyle in (self.Directive, self.Statement,
+                  self.Operator):
                     currentStyle = self.Default
+                    nextStyle = self.Default
+                
+                if currentStyle == self.Default and source[pos] in \
+                  b',=+-*/%&|~<>.#():;[]{}':
+                    currentStyle = self.Operator
                     nextStyle = self.Default
             elif pos == 0 or chr(source[pos - 1]).isspace():
                 if currentStyle == self.Default:
@@ -142,4 +152,7 @@ class InformLexer(QsciLexerCustom):
                     elif currentWord in self.directives:
                         currentStyle = self.Directive
                         nextStyle = self.Directive
+                    elif currentWord in self.operatorWords:
+                        currentStyle = self.Operator
+                        nextStyle = self.Operator
             self.setStyling(1, currentStyle)

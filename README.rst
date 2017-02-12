@@ -58,13 +58,6 @@ following command::
 
     sudo apt-get install python3-pyqt5.qsci
 
-As of 19 January 2015, anyone using Ubuntu 14.10 "Utopic Unicorn" may have
-difficulty running Informatic due to a bug in Ubuntu's official
-``python3-pyqt5.qsci`` package, documented at
-<https://bugs.launchpad.net/ubuntu/+source/qscintilla2/+bug/1391056>. This
-problem is not known to affect Ubuntu 14.04 "Trusty Tahr", the latest Long-Term
-Service release.
-
 To run Informatic from source without installing it simply run the script
 ``informatic.pyw`` using a Python 3 interpreter::
 
