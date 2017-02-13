@@ -67,7 +67,7 @@ if os.path.isdir('/usr/share/applications'):
 
 try:
     import PyQt5
-    import PyQt5.QSci
+    import PyQt5.Qsci
 except:
     setup_options['install_requires'] = ['PyQt5', 'QScintilla']
 
